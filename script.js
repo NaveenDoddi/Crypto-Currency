@@ -10,7 +10,7 @@
 
         allData = data;
         // console.log(data)
-        localStorage.setItem("get", JSON.stringify(data))
+        localStorage.setItem("cryptoData", JSON.stringify(data))
 
         displayData(data); // Display cards and create charts with fetched data
     }
@@ -36,8 +36,8 @@
                         </div>
                         <div class="collapse-content mt-3 p-3" style="border-radius:10px">
                             <p><strong>24h High:</strong> ${coin.high_24h.toFixed(2)}</p>
-                            <p><strong>24h Low:</strong> ${coin.low_24h.toFixed(2)}</p>
                             <p><strong>ATH:</strong> ${coin.ath.toFixed(2)}</p>
+                            <p><strong>24h Low:</strong> ${coin.low_24h.toFixed(2)}</p>
                             <p><strong>ATL:</strong> ${coin.atl.toFixed(2)}</p>
                             <p><strong>24h Profit/Loss:</strong> ${coin.price_change_percentage_24h.toFixed(2)}%</p>
                             <p><strong>Market Cap Change 24h:</strong> ${coin.market_cap_change_24h.toLocaleString()}</p>
@@ -50,10 +50,12 @@
                         <div class="market-cap">
                             <strong>Market Cap:</strong> $${coin.market_cap.toLocaleString()}
                         </div>
-                        <div class="change">
-                            <span class="badge ${coin.price_change_percentage_24h >= 0 ? 'badge-success' : 'badge-danger'}">
+                        <div class="change">                        
+                            <span class=" badge ${coin.price_change_percentage_24h >= 0 ? 'bg-success' : 'bg-danger'}">
                                 ${coin.price_change_percentage_24h.toFixed(2)}%
+                                
                             </span>
+
                         </div>
                     </div>
                 </div>
@@ -146,7 +148,7 @@
     }
 
     fetchCryptoData();
-    createCharts(); // Initialize charts on page load
+    createCharts();
 
     function trending(){
         fetch('https://api.coingecko.com/api/v3/search/trending')
