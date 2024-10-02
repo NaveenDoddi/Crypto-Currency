@@ -1,0 +1,50 @@
+#coin-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+/* Scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-30%);
+    }
+}
+
+/* Apply animation to the coin list */
+.scrolling {
+    display: inline-flex;
+    animation: scroll 10s linear infinite;
+}
+
+/* Style for individual coin divs */
+.coin {
+    display: inline-block;
+    text-align: center;
+    margin: 0 15px;
+}
+
+/* Rounded image */
+.coin img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+    padding: 3px;
+    background-color: #fff;
+}
+
+/* Coin name style */
+.coin p {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #343a40;
+}

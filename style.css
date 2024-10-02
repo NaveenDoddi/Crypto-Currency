@@ -1,76 +1,80 @@
-
 body {
-      background-color: #f8f9fa;
-  }
-  .container {
-      margin-top: 20px;
-  }
-  .card {
-      margin: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  .card-title {
-      font-size: 1.5em;
-      font-weight: bold;
-  }
-  .card-text {
-      font-size: 1.2em;
-  }
-  .card-footer {
-      background-color: #fff;
-  }
-  .price, .market-cap, .change {
-      display: inline-block;
-      width: 30%;
-  }
-  .collapse-content {
-      display: none;
-  }
-  .card-body.active .collapse-content {
-      display: block;
-  }
-  .search-bar {
-      margin-bottom: 20px;
-      width: 100%;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-  }
-  footer {
-      background-color: #343a40;
-      color: #fff;
-      padding: 10px 0;
-      text-align: center;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-      
-  }
+    background-color: #f8f9fa;
+}
 
-  .navbar-brand {
-      font-size: 1.8em;
-  }
+.container {
+    margin-top: 20px;
+}
 
-  .navbar-nav .nav-link {
-      font-size: 1.2em;
-  }
+.card {
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-  .navbar-toggler {
-      outline: none;
-  }
+.card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
 
-  .collapse-content {
-display: none;
-transition: max-height 0.3s ease-in-out;
-overflow: hidden;
+.card-text {
+    font-size: 1.2em;
+}
+
+.card-footer {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price, .market-cap, .change {
+    display: inline-block;
+    width: 30%;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2em;
+}
+
+.navbar-toggler {
+    outline: none;
+}
+
+/* Collapse content styling */
+.collapse-content {
+    display: none;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .card-body.active .collapse-content {
-display: block;
-max-height: 500px;
+    display: block;
+    max-height: 500px;
+    background-color: #f0f8ff; /* Light blue background when extended */
+}
+
+/* Hover effect */
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.search-bar {
+    margin: 0 auto 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+footer {
+    color: #000;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    font-weight: 800;
 }

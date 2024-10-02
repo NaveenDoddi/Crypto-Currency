@@ -1,15 +1,15 @@
-let priceChart, changeChart, marketCapChart;
+    let priceChart, changeChart, marketCapChart;
     let allData = []; // Store all the fetched data to filter and update charts
 
     async function fetchCryptoData() {
         // const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
         // const data = await response.json()
 
-        const response = localStorage.getItem('get')
+        const response = localStorage.getItem('cryptoData')
         const data = await JSON.parse(response)
 
         allData = data;
-        console.log(data)
+        // console.log(data)
         localStorage.setItem("get", JSON.stringify(data))
 
         displayData(data); // Display cards and create charts with fetched data
@@ -30,17 +30,17 @@ let priceChart, changeChart, marketCapChart;
                 <div class="card shadow-sm mb-4">
                     <div class="card-body" onclick="toggleDetails(this)" style="cursor: pointer;">
                         <h5 class="card-title text-center">${coin.name}</h5>
-                        <div class="card-text d-flex justify-content-around">
+                        <div class="card-text d-flex justify-content-between">
                             <img src="${coin.image}" alt="${coin.name}" class="rounded-circle border border-secondary" style="width: 40px; height: 40px; margin-right: 10px;">
                             <span class="font-weight-bold">${coin.symbol.toUpperCase()}</span>
                         </div>
-                        <div class="collapse-content mt-3">
-                            <p><strong>ATH:</strong> $${coin.ath.toFixed(2)}</p>
-                            <p><strong>ATL:</strong> $${coin.atl.toFixed(2)}</p>
-                            <p><strong>24h High:</strong> $${coin.high_24h.toFixed(2)}</p>
-                            <p><strong>24h Low:</strong> $${coin.low_24h.toFixed(2)}</p>
+                        <div class="collapse-content mt-3 p-3" style="border-radius:10px">
+                            <p><strong>24h High:</strong> ${coin.high_24h.toFixed(2)}</p>
+                            <p><strong>24h Low:</strong> ${coin.low_24h.toFixed(2)}</p>
+                            <p><strong>ATH:</strong> ${coin.ath.toFixed(2)}</p>
+                            <p><strong>ATL:</strong> ${coin.atl.toFixed(2)}</p>
                             <p><strong>24h Profit/Loss:</strong> ${coin.price_change_percentage_24h.toFixed(2)}%</p>
-                            <p><strong>Market Cap Change 24h:</strong> $${coin.market_cap_change_24h.toLocaleString()}</p>
+                            <p><strong>Market Cap Change 24h:</strong> ${coin.market_cap_change_24h.toLocaleString()}</p>
                         </div>
                     </div>
                     <div class="card-footer bg-white d-flex justify-content-between align-items-center">
@@ -147,3 +147,10 @@ let priceChart, changeChart, marketCapChart;
 
     fetchCryptoData();
     createCharts(); // Initialize charts on page load
+
+    function trending(){
+        fetch('https://api.coingecko.com/api/v3/search/trending')
+        .then(res => res.json())
+        .then((data) => localStorage.setItem("trending", JSON.stringify(data)))
+
+    }
