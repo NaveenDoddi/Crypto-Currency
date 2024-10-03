@@ -1,8 +1,9 @@
-// fetch('https://api.coingecko.com/api/v3/search/trending')
-// .then(response => response.json())
-// .then(data => {
-    let data = localStorage.getItem('trending')
-    data = JSON.parse(data)
+fetch('https://api.coingecko.com/api/v3/search/trending')
+.then(response => response.json())
+.then(data => {
+  
+    // let data = localStorage.getItem('trending')
+    // data = JSON.parse(data)
 
     const coins = data.coins;
     const coinList = document.getElementById('coin-list');
@@ -22,47 +23,17 @@
         coinList.appendChild(coinDiv);
     });
 
-      // const nfts = data.nfts;  // Assuming data.nfts contains the NFT information
-      // const nftContainer = document.getElementById('nft-container');
-      
+    const categories = data.categories
+    const categoryContainer = document.getElementById('category-container');
 
-      // if (nfts && nfts.length > 0) {
-
-      //   nfts.forEach(nft => {
-      //       const nftDiv = document.createElement('div');
-      //       nftDiv.classList.add('col-md-4', 'nft-card');
-      
-      //       const nftImage = document.createElement('img');
-
-      //       nftImage.src = nft.thumb;
-      //       const nftName = document.createElement('h5');
-      //       nftName.textContent = nft.name; 
-      //       const nftDescription = document.createElement('p');
-      //       nftDescription.textContent = nft.description; 
-      
-      //       // Append elements to the nft card div
-      //       nftDiv.appendChild(nftImage);
-      //       nftDiv.appendChild(nftName);
-      //       nftDiv.appendChild(nftDescription);
-      
-      //       // Append the nft card div to the container
-      //       nftContainer.appendChild(nftDiv);
-      //     });
-      // } else {
-      //       // Show a message if no NFTs are found
-      //       nftContainer.innerHTML = '<p>No NFTs found.</p>';
-      // }
-
-      const categories = data.categories
-      const categoryContainer = document.getElementById('category-container');
-
-      if (categories && categories.length > 0) {
+    if (categories && categories.length > 0) {
 
         categories.forEach(category => {
           displayCoinCategoryData(category);
         })
 
-      }
+    }
+})
 
 function displayCoinCategoryData(data) {
   const coinDetailsContainer = document.getElementById('coin-details-container');

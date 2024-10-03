@@ -9,7 +9,7 @@ async function fetchCryptoData() {
     const data = await response.json();
 
     allData = data; // Store all data for filtering and displaying
-    localStorage.setItem("cryptoData", JSON.stringify(allData));
+    // localStorage.setItem("cryptoData", JSON.stringify(allData));
 
     displayData(allData.slice(0, currentDisplayCount)); // Display the initial set of coins
 }
@@ -66,7 +66,7 @@ function displayData(data) {
     });
 
     // Update all charts based on limited data
-    updateChart(priceChart, labels, prices, 'Price in USD', 'rgba(54, 162, 235, 0.6)');
+    updateChart(priceChart, labels, prices, 'Price in USD', 'rgb(245, 200, 142)');
     updateChart(changeChart, labels, priceChanges, '24h Change (%)', 'rgba(75, 192, 192, 0.6)');
     updateChart(marketCapChart, labels, marketCaps, 'Market Cap in USD', 'rgba(153, 102, 255, 0.6)');
 }

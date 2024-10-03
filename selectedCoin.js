@@ -22,8 +22,6 @@ function selectedCoinData() {
       // Convert time difference from milliseconds to days
       const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-      document.getElementById('no_of_days').innerText = days
-      document.getElementById('selectedCoin').innerText = coin.toUpperCase();
       fetchBitcoinData(days, coin)
 
     } else {
@@ -68,8 +66,11 @@ async function fetchBitcoinData(days,coin) {
       prices = Object.values(groupedPrices);
     }
 
-    renderChart(prices, coin);
+    document.getElementById('selectedCoinDisplayDiv').style.display = "block"
+    document.getElementById('no_of_days').innerText = days
+    document.getElementById('selectedCoin').innerText = coin.toUpperCase();
 
+    renderChart(prices, coin);
     displaySelectedCoinData(coin, days, averagePrice, highPrice, lowPrice, latestMarketCap)
     
 }

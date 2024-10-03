@@ -54,7 +54,7 @@
     <div class="trending-container mt-3 p-1">
 
         <div id="coin-container" class="rounded shadow-sm p-3">
-            <h4 class="text-left text-success mb-1">Trending <img src="trending_icon.jpeg" alt="" style="width: 40px; height: 40px;" class="mr-2"></h4>
+            <h4 class="text-left text-success mb-1">Trending <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmi9ln3xv1asnhP8i64Pe_isJL2YzVeUVHhA&s" alt="" style="width: 40px; height: 40px;" class=""></h4>
 
             <div id="coin-list" class="scrolling"></div>
         </div>
@@ -64,7 +64,7 @@
 
     <!-- selected coin search -->
     <div class="container mt-5" id="selectedCoinSearchDiv">
-        <h6 class="text-center mb-0">Select a Crypto Coin and Date to Calculate Days From Today</h6>
+        <h6 class="text-center mb-0">Select a Crypto Coin and Date </h6>
         
         <!-- Date Picker Input -->
         <div class="mb-3 row d-flex justify-content-center">
@@ -82,8 +82,9 @@
                               <option value="ripple">Ripple (XRP)</option>
                               <option value="litecoin">Litecoin (LTC)</option>
                               <option value="cardano">Cardano (ADA)</option>
-                              <option value="custom">Custom</option>
                             </select>
+
+                            &nbsp;
                             
                             <input type="text" id="cryptoInput" class="form-control" placeholder="Or enter custom cryptocurrency" aria-label="Custom Cryptocurrency">
                         </div>
@@ -100,7 +101,7 @@
     
 
     <!--selected coin data display -->
-    <div class="container mt-5" id="selectedCoinDisplayDiv">
+    <div class="container mt-5" id="selectedCoinDisplayDiv" style="display: none;">
 
         <h4 class="text-center"><span id="selectedCoin"></span> Price Over the Last <span id="no_of_days"></span> Days</h4>
 
@@ -111,7 +112,7 @@
 
     <!-- Category of coins container -->
     <div class="rounded shadow-sm p-3 mt-5" id="CategoriesContainer">
-        <h4 class="text-left mb-4 fw-bolder" >Coin Categories</h4>
+        <h4 class="text-left mb-4 fw-bolder" >Coin Categories <img src="shakehands.png" alt="" style="width: 50px; height: 40px;" class="rounded-circle"></h4>
 
         <div id="coin-details-container" class="row justify-content-center"></div>
     </div>

@@ -71,7 +71,7 @@ body {
 }
 
 footer {
-    color: #000;
+    color: #510707;
     padding: 30px;
     text-align: center;
     width: 100%;
@@ -105,7 +105,7 @@ footer {
     transition: border-color 0.3s; /* Smooth transition */
 }
 
-#selectedCoinSearchDiv select,input[type="text"]:focus, input[type="date"]:focus {
+#selectedCoinSearchDiv select, input[type="text"]:focus, input[type="date"]:focus {
     border-color: rgb(193, 112, 42);
     box-shadow: 0 0 5px rgb(51, 24, 0);
 }
@@ -140,7 +140,7 @@ footer {
     transform: translateY(0);
 }
 
-h5, h4{
+h6, h5, h4{
     color: rgb(59, 30, 4);
 }
 
@@ -150,4 +150,8 @@ button{
 
 #selectedCoinSearchDiv .card-body{
     background-color: rgb(245, 200, 142);
+}
+
+.offcanvas .nav-link{
+    color: rgb(153, 85, 25);
 }
