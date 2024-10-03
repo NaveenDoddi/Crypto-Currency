@@ -68,15 +68,15 @@ function displayCoinCategoryData(data) {
   const coinDetailsContainer = document.getElementById('coin-details-container');
 
     const cardDiv = document.createElement('div');
-    cardDiv.classList.add('col-md-4', 'coin-detail-card'); 
+    cardDiv.classList.add('col-md-4', 'col-sm-6', 'coin-detail-card', 'p-1'); 
 
     cardDiv.innerHTML = `
         <div class="card h-100 m-0">
-          <div class="card-body text-center">
+          <div class="card-body text-center p-0">
               <!-- Card title is always visible -->
-              <h5 class="card-title p-2 rounded ${data.data.market_cap_change_percentage_24h.aed >= 0 ? 'bg-success':'bg-danger'}" data-toggle="collapse" data-target="#collapse${data.id}" aria-expanded="false" aria-controls="collapse${data.id}">
-                  <a href='#${data.name}' class="text-dark pe-auto text-decoration-none">
-                      <strong>${data.name}</strong>
+              <h5 class="card-title p-2 text-light rounded ${data.data.market_cap_change_percentage_24h.aed >= 0 ? 'bg-success':'bg-danger'}" data-toggle="collapse" data-target="#collapse${data.id}" aria-expanded="false" aria-controls="collapse${data.id}">
+                  <a href='#${data.name}' class="text-light pe-auto text-decoration-none">
+                      ${data.name}
                   </a>
               </h5>
 

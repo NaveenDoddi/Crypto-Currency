@@ -78,3 +78,41 @@ footer {
     bottom: 0;
     font-weight: 800;
 }
+
+.loading {
+    font-size: 18px;
+    color: #f7931a;
+}
+
+
+.container {
+    background-color: #f8f9fa; /* Light background */
+    border-radius: 10px;
+    padding: 20px; /* Add some padding */
+}
+
+.card {
+    border: none; /* Remove card border */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+#selectedCoinSearchDiv input[type="text"], input[type="date"] {
+    border-radius: 5px; /* Rounded corners for inputs */
+    transition: border-color 0.3s; /* Smooth transition */
+}
+
+#selectedCoinSearchDiv input[type="text"]:focus, input[type="date"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#selectedCoinSearchDiv .btn {
+    color: white;
+    font-weight: bolder;
+    background-color: #007bff;
+    border-color: rgba(0, 123, 255, 0.5);
+}

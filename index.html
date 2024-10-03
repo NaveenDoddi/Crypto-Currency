@@ -50,56 +50,57 @@
         </div>
     </div>
 
-
-
-    <div class="container text-center">
-        <h1 class="mb-4">Bitcoin Historical Data</h1>
-        <p>Showing Bitcoin data for <strong>January 30, 2024</strong></p>
-        <div id="loading" class="loading">Loading data...</div>
-
-        <!-- Bitcoin Data Display -->
-        <div id="data" class="row justify-content-center"></div>
-
-        <!-- Chart Container -->
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <canvas id="selectCoinChart"></canvas>
-            </div>
-        </div>
-    </div>
-
-    
-
     <!-- coins trending container -->
-    <div class="trending-container mt-3 p-2">
+    <div class="trending-container mt-3 p-1">
 
         <div id="coin-container" class="rounded shadow-sm p-3">
-            <h4 class="text-left mb-4">Trending <img src="trending_icon.jpeg" alt="" style="width: 40px; height: 40px;" class="mr-2"></h4>
+            <h4 class="text-left text-primary mb-1">Trending <img src="trending_icon.jpeg" alt="" style="width: 40px; height: 40px;" class="mr-2"></h4>
 
-            <div id="coin-list" class="scrolling">
-
-            </div>
-
-        </div>
-
-        <!-- NFT categories will be shown here -->
-        <!-- <div class="container  mt-5">
-            <h4 class="text-left mb-4">Trending NFTs Categories</h4>
-            
-            <div id="nft-container" class="row"></div>
-        </div> -->
-
-        
-        <!-- Category container -->
-        <div class="rounded shadow-sm p-3 mt-5">
-            <h4 class="text-left mb-4">Coin Categories</h4>
-
-            <div id="coin-details-container" class="row justify-content-center"></div>
+            <div id="coin-list" class="scrolling"></div>
         </div>
 
     </div>
 
+
+    <!-- selected coin search -->
+    <div class="container mt-5" id="selectedCoinSearchDiv">
+        <h6 class="text-center mb-0">Select a Crypto Coin and Date to Calculate Days From Today</h6>
+        
+        <!-- Date Picker Input -->
+        <div class="mb-3 row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-danger">Crypto Coin Selection</h5>
+                        
+                        <input type="text" id="cryptoInput" class="form-control mb-3" placeholder="Enter Cryptocurrency (e.g., bitcoin)" value="bitcoin" required>
+                        
+                        <input type="date" id="datePicker" class="form-control mb-3" required>
+                        
+                        <button class="btn" onclick="selectedCoinData()">Show</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
+
+    <!--selected coin data display -->
+    <div class="container mt-5" id="selectedCoinDisplayDiv">
+
+        <h4 class="text-center">Bitcoin Price Over the Last <span id="no_of_days"></span> Days</h4>
+
+        <div id="selectedCoinData" class="row justify-content-center"></div>
+        <canvas id="selectedCoinChart"></canvas>
+    </div>
+
+
+    <!-- Category of coins container -->
+    <div class="rounded shadow-sm p-3 mt-5" id="CategoriesContainer">
+        <h4 class="text-left mb-4 fw-bolder">Coin Categories</h4>
+
+        <div id="coin-details-container" class="row justify-content-center"></div>
+    </div>
 
     <div class="container">
         <input type="text" class="form-control search-bar" id="searchBar" placeholder="Search for a cryptocurrency...">
@@ -123,7 +124,7 @@
                 <canvas id="marketCapChart" width="600" height="400"></canvas>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 mb-3">
                 <h3 class="text-center">Cryptocurrency Prices</h3>
                 <canvas id="priceChart"></canvas>
             </div>
@@ -136,6 +137,7 @@
             <div class="row" id="crypto-data">
                 <!-- Data will be inserted here -->
             </div>
+            <button id="showMoreBtn" onclick="showMore()" class="btn btn-primary mt-3">Show More</button> <!-- Show More Button -->
         </div>
 
     </div>
