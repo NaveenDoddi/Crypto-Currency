@@ -74,8 +74,8 @@ function displayCoinCategoryData(data) {
         <div class="card h-100 m-0">
           <div class="card-body text-center p-0">
               <!-- Card title is always visible -->
-              <h5 class="card-title p-2 text-light rounded ${data.data.market_cap_change_percentage_24h.aed >= 0 ? 'bg-success':'bg-danger'}" data-toggle="collapse" data-target="#collapse${data.id}" aria-expanded="false" aria-controls="collapse${data.id}">
-                  <a href='#${data.name}' class="text-light pe-auto text-decoration-none">
+              <h5 class="card-title p-2 text-light rounded " style = "background-color:${data.data.market_cap_change_percentage_24h.aed >= 0 ? 'rgb(111, 78, 55)':'rgb(59, 30, 4)'}" data-toggle="collapse" data-target="#collapse${data.id}" aria-expanded="false" aria-controls="collapse${data.id}">
+                  <a href='#${data.name}' class="pe-auto text-decoration-none" style="color: white">
                       ${data.name}
                   </a>
               </h5>

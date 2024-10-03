@@ -100,14 +100,14 @@ footer {
     font-weight: bold;
 }
 
-#selectedCoinSearchDiv input[type="text"], input[type="date"] {
+#selectedCoinSearchDiv select,input[type="text"], input[type="date"] {
     border-radius: 5px; /* Rounded corners for inputs */
     transition: border-color 0.3s; /* Smooth transition */
 }
 
-#selectedCoinSearchDiv input[type="text"]:focus, input[type="date"]:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+#selectedCoinSearchDiv select,input[type="text"]:focus, input[type="date"]:focus {
+    border-color: rgb(193, 112, 42);
+    box-shadow: 0 0 5px rgb(51, 24, 0);
 }
 
 #selectedCoinSearchDiv .btn {
@@ -115,4 +115,39 @@ footer {
     font-weight: bolder;
     background-color: #007bff;
     border-color: rgba(0, 123, 255, 0.5);
+}
+
+#showMoreBtn {
+    background-color: #4CAF50;
+    color: white; 
+    padding: 6px 12px;
+    font-size: 10px; 
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+  
+#showMoreBtn:hover {
+    background-color: #2d7330; 
+    transform: translateY(-2px);
+
+}
+  
+#showMoreBtn:active {
+    background-color: #2d7330;
+    transform: translateY(0);
+}
+
+h5, h4{
+    color: rgb(59, 30, 4);
+}
+
+button{
+    background-color: rgb(218, 160, 109);
+}
+
+#selectedCoinSearchDiv .card-body{
+    background-color: rgb(245, 200, 142);
 }
