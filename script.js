@@ -5,10 +5,13 @@ let currentDisplayCount = 10; // Starting number of coins displayed
 const increment = 10; // Number of cards to display each time the button is clicked
 
 async function fetchCryptoData() {
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
-    const data = await response.json();
+    // const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
+    // const data = await response.json();
 
-    allData = data; // Store all data for filtering and displaying
+    const response = localStorage.getItem('cryptoData')
+    const data = JSON.parse(response)
+
+    allData = data;
     // localStorage.setItem("cryptoData", JSON.stringify(allData));
 
     displayData(allData.slice(0, currentDisplayCount)); // Display the initial set of coins
@@ -63,6 +66,16 @@ function displayData(data) {
         labels.push(coin.name);
         priceChanges.push(coin.price_change_percentage_24h);
         marketCaps.push(coin.market_cap);
+        let totalChange = 0;
+
+
+        prices.forEach(coin => {
+          totalChange += coin
+        });
+
+        let averageChange = totalChange / prices.length;
+        console.log("Average 24h change:", averageChange);
+
     });
 
     // Update all charts based on limited data

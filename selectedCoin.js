@@ -29,6 +29,17 @@ function selectedCoinData() {
     }
 }
 
+
+function defaultDatePicker(){
+  const today = new Date();
+      
+  const yesterday = new Date(today.getTime() - 86400000);
+  const formattedDate = yesterday.toISOString().split('T')[0];
+
+  document.getElementById('datePicker').value = formattedDate;
+}
+defaultDatePicker();
+
 async function fetchBitcoinData(days,coin) {
     const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
     const data = await response.json();
@@ -117,7 +128,7 @@ function renderChart(prices, coin) {
 function displaySelectedCoinData(coin, days, averagePrice, highPrice, lowPrice, latestMarketCap) {
     
     document.getElementById('selectedCoinData').innerHTML = `
-        <div class="col-md-6">
+        <div>
             <div class="card">
                 <div class="card-header">
                     <h5>${coin} prices(usd) in last ${days} days</h5>

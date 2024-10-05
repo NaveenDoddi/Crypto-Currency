@@ -54,7 +54,7 @@
     <div class="trending-container mt-3 p-1">
 
         <div id="coin-container" class="rounded shadow-sm p-3">
-            <h4 class="text-left text-success mb-1">Trending <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmi9ln3xv1asnhP8i64Pe_isJL2YzVeUVHhA&s" alt="" style="width: 40px; height: 40px;" class=""></h4>
+            <h4 class="text-left text-success mb-1">Trending <img src="trending_icon.jpeg" alt="" style="width: 40px; height: 40px;" class=""></h4>
 
             <div id="coin-list" class="scrolling"></div>
         </div>
@@ -63,12 +63,12 @@
 
 
     <!-- selected coin search -->
-    <div class="container mt-5" id="selectedCoinSearchDiv">
+    <div class="containe mt-5" id="selectedCoinSearchDiv">
         <h6 class="text-center mb-0">Select a Crypto Coin and Date </h6>
         
         <!-- Date Picker Input -->
-        <div class="mb-3 row d-flex justify-content-center">
-            <div class="col-md-8">
+        <div class="mb-3 row  d-flex justify-content-center">
+            <div class="col-sm-8 col-md-8">
                 <div class="card shadow-sm rounded">
                     <div class="card-body text-center">
                         <h5 class="card-title" style="color: rgb(59, 30, 4);">Crypto Coin Selection</h5>
@@ -79,7 +79,7 @@
                               <option value="">Select a cryptocurrency...</option>
                               <option value="bitcoin">Bitcoin (BTC)</option>
                               <option value="ethereum">Ethereum (ETH)</option>
-                              <option value="ripple">Ripple (XRP)</option>
+                              <option value="tether">Tether (XRP)</option>
                               <option value="litecoin">Litecoin (LTC)</option>
                               <option value="cardano">Cardano (ADA)</option>
                             </select>
@@ -96,6 +96,9 @@
                     </div>
                 </div>
             </div>
+
+            <div id="selectedCoinData" class="col-sm-8 col-md-4"></div>
+
         </div>
     </div>
     
@@ -105,7 +108,7 @@
 
         <h4 class="text-center"><span id="selectedCoin"></span> Price Over the Last <span id="no_of_days"></span> Days</h4>
 
-        <div id="selectedCoinData" class="row justify-content-center"></div>
+        
         <canvas id="selectedCoinChart"></canvas>
     </div>
 
