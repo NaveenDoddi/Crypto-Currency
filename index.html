@@ -7,6 +7,10 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="trending-style.css">
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -76,7 +80,7 @@
                         <!-- <input type="text" id="cryptoInput" class="form-control mb-3" placeholder="Enter Cryptocurrency (e.g., bitcoin)" value="bitcoin" required> -->
                         <div class="input-group mb-3">
                             <select id="coinSelect" class="form-select">
-                              <option value="">Select a cryptocurrency...</option>
+                              <!-- <option value="">Select a cryptocurrency...</option> -->
                               <option value="bitcoin">Bitcoin (BTC)</option>
                               <option value="ethereum">Ethereum (ETH)</option>
                               <option value="tether">Tether (XRP)</option>
@@ -108,8 +112,8 @@
 
         <h4 class="text-center"><span id="selectedCoin"></span> Price Over the Last <span id="no_of_days"></span> Days</h4>
 
-        
-        <canvas id="selectedCoinChart"></canvas>
+        <div id="selectedCoinChart" style="width: 900px; height: 500px"></div>
+
     </div>
 
 
@@ -120,7 +124,7 @@
         <div id="coin-details-container" class="row justify-content-center"></div>
     </div>
 
-    <div class="container">
+    <div class="containe">
         <input type="text" class="form-control search-bar" id="searchBar" placeholder="Search for a cryptocurrency...">
 
         <select class="form-control search-bar" id="filterBar">
@@ -131,7 +135,7 @@
             <option value="negativeChange">Negative 24h Change</option>
         </select>
 
-        <div class="row" id="charts">
+        <div class="row d-flex justify-content-center" id="charts">
             <div class="col-md-6">
                 <h4 class="text-center"> 24h Price Change (%) </h4>
                 <canvas id="changeChart" width="600" height="400"></canvas>
@@ -142,13 +146,11 @@
                 <canvas id="marketCapChart" width="600" height="400"></canvas>
             </div>
 
-            <div class="col-12 mb-3">
+            <div class="col-10 mb-3">
                 <h4 class="text-center">Cryptocurrency Prices</h4>
                 <canvas id="priceChart"></canvas>
             </div>
         </div>
-
-        
 
         <div id="crypto-data-div">
             <h4 class="text-center">Crypto Currency Coins <img src="inside-crypto-cryptocurrency.png" alt="" style="width: 50px; height: 50px;" class="mr-2 rounded-circle"></h4>
@@ -169,8 +171,8 @@
 </footer>
 
 
-<script src="script.js"></script>
-<script src="trending-script.js"></script>
+<!-- <script src="script.js"></script> -->
+<!-- <script src="trending-script.js"></script> -->
 <script src="selectedCoin.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

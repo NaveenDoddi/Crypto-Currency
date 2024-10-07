@@ -5,17 +5,18 @@ let currentDisplayCount = 10; // Starting number of coins displayed
 const increment = 10; // Number of cards to display each time the button is clicked
 
 async function fetchCryptoData() {
-    // const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
-    // const data = await response.json();
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
+    const data = await response.json();
 
-    const response = localStorage.getItem('cryptoData')
-    const data = JSON.parse(response)
+    // const response = localStorage.getItem('cryptoData')
+    // const data = JSON.parse(response)
 
     allData = data;
-    // localStorage.setItem("cryptoData", JSON.stringify(allData));
+    localStorage.setItem("cryptoData", JSON.stringify(allData));
 
-    displayData(allData.slice(0, currentDisplayCount)); // Display the initial set of coins
-}
+    const sortedData = allData.sort((a, b) => b.current_price - a.current_price);
+
+    displayData(sortedData.slice(0, currentDisplayCount+3));}
 
 function displayData(data) {
     const container = document.getElementById('crypto-data');
@@ -66,9 +67,8 @@ function displayData(data) {
         labels.push(coin.name);
         priceChanges.push(coin.price_change_percentage_24h);
         marketCaps.push(coin.market_cap);
+
         let totalChange = 0;
-
-
         prices.forEach(coin => {
           totalChange += coin
         });
@@ -99,7 +99,9 @@ function createCharts() {
 
     priceChart = new Chart(priceCtx, createChartConfig());
     changeChart = new Chart(changeCtx, createChartConfig());
-    marketCapChart = new Chart(marketCapCtx, createChartConfig());
+    marketCapChart = new Chart(marketCapCtx, createLineChartConfig());
+
+    console.log(priceChart)
 }
 
 function createChartConfig() {
@@ -126,6 +128,50 @@ function createChartConfig() {
         }
     };
 }
+function createLineChartConfig() {
+    return {
+        type: 'line',  // Line chart type
+        data: {
+            labels: [],  // X-axis labels
+            datasets: [{
+                label: 'Your Data Label',  // Label for the dataset
+                data: [],   // Data points
+                backgroundColor: 'rgba(210, 180, 140, 0.5)',  // Light brown area fill
+                borderColor: 'rgba(33, 150, 243, 1)',  // Blue line color
+                borderWidth: 2,  // Line thickness
+                fill: true,  // Fill the area under the line
+                pointRadius: 0,  // No bubbles at data points
+                borderCapStyle: 'butt'  // Sharp edges for the line
+            }]
+        },
+        options: {
+            scales: {
+                y: {  // Y-axis configuration
+                    beginAtZero: true  // Start y-axis from 0
+                },
+                x: {  // X-axis configuration
+                    display: true  // Display x-axis
+                }
+            },
+            elements: {
+                line: {
+                    tension: 0  // Straight lines, no curve
+                }
+            },
+            animation: {  // Enable drawing animation
+                duration: 1000,  // Animation duration for drawing the chart (1 second)
+                easing: 'easeInOutQuart'  // Easing function for a smooth animation
+            },
+            hover: {  // Enable hover animation
+                mode: 'nearest',  // Nearest point hover mode
+                intersect: false,  // Highlight the closest point
+                animationDuration: 400  // Duration of hover animation (400ms)
+            }
+        }
+    };
+}
+
+
 
 // Show more function
 function showMore() {

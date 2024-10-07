@@ -1,4 +1,6 @@
 
+google.charts.load('current', {'packages':['corechart']});
+
 // Function to calculate days between selected date and today
 function selectedCoinData() {
     const datePicker = document.getElementById('datePicker').value;
@@ -22,7 +24,7 @@ function selectedCoinData() {
       // Convert time difference from milliseconds to days
       const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-      fetchBitcoinData(days, coin)
+      fetchCryptoCoinData(days, coin)
 
     } else {
       document.getElementById('no_of_days').innerHTML = ' Please select a valid days .';
@@ -30,99 +32,94 @@ function selectedCoinData() {
 }
 
 
-function defaultDatePicker(){
-  const today = new Date();
-      
-  const yesterday = new Date(today.getTime() - 86400000);
-  const formattedDate = yesterday.toISOString().split('T')[0];
+async function fetchCryptoCoinData(days,coin) {
+    // const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
+    // const data = await response.json();
+    const response = localStorage.getItem('selectedCoinData')
+    const data = JSON.parse(response)
 
-  document.getElementById('datePicker').value = formattedDate;
-}
-defaultDatePicker();
-
-async function fetchBitcoinData(days,coin) {
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
-    const data = await response.json();
+    // localStorage.setItem('selectedCoinData', JSON.stringify(data))
     
-    let prices = data.prices.map(price => ({
-      time: new Date(price[0]), // Convert timestamp to Date
-      value: price[1]           // Bitcoin price in USD
-    }));
+    var prices = [];
+    var chartData = [
+      ['Time', 'Market Caps', 'Total Volumes'],  // Define column headers
+    ];
 
-    // Extract prices and market caps
-    const pricesList = data.prices.map(price => price[1]);
-    const marketCaps = data.market_caps.map(cap => cap[1]);
-  
-    // Calculate high, low, and average prices
-    const highPrice = Math.max(...pricesList);
-    const lowPrice = Math.min(...pricesList);
-    const averagePrice = pricesList.reduce((sum, price) => sum + price, 0) / pricesList.length;
-
-    const latestMarketCap = marketCaps[marketCaps.length - 1];
-    
-
-    if (days <= 5) {
-
-      prices = prices;
-    } else {
-      // Convert timestamps and group prices by day
-      const groupedPrices = prices.reduce((acc, price) => {
-        const dateKey = price.time.toISOString().split('T')[0]; // Extract YYYY-MM-DD from date
-        if (!acc[dateKey]) {
-          acc[dateKey] = price; // Add the first occurrence of the day
-        }
-        return acc;
-      }, {});
-    
-      prices = Object.values(groupedPrices);
+    for (let i = 0; i < data.market_caps.length; i++) {
+      const time = new Date(data.market_caps[i][0]); // Convert timestamp to Date
+      const marketCap = data.market_caps[i][1];      // Get market cap value
+      const totalVolume = data.total_volumes[i][1];  // Get total volume value
+      chartData.push([time, marketCap, totalVolume]); // Add both marketCap and totalVolume to chartData
+      prices.push(data.prices[i][1])
     }
-
     document.getElementById('selectedCoinDisplayDiv').style.display = "block"
     document.getElementById('no_of_days').innerText = days
     document.getElementById('selectedCoin').innerText = coin.toUpperCase();
 
-    renderChart(prices, coin);
-    displaySelectedCoinData(coin, days, averagePrice, highPrice, lowPrice, latestMarketCap)
+    // Calculate high, low, and average prices
+    const highPrice = Math.max(...prices);
+    const lowPrice = Math.min(...prices);
+    const averagePrice = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+
+    // const latestMarketCap = marketCap[marketCaps.length - 1];
     
-}
-  
-// Function to render chart using Chart.js
-let selectedCoinChart
+    // drawChart(coin, days);
+    google.charts.setOnLoadCallback(drawChart);
 
-function renderChart(prices, coin) {
+
+    displaySelectedCoinData(coin, days, highPrice, lowPrice, averagePrice) 
     
-  const ctx = document.getElementById('selectedCoinChart').getContext('2d');
+    return chartData;
 
-  if (selectedCoinChart) {
-      selectedCoinChart.destroy();
-  }
+    // if (days <= 1) {
 
-  selectedCoinChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: prices.map(p => p.time.toLocaleDateString()), // Dates for x-axis
-      datasets: [{
-        label: coin+' Price (USD)',
-        data: prices.map(p => p.value), // Prices for y-axis
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-        fill: false
-      }]
-    },
-    options: {
-      scales: {
-        x: {
-          type: 'time',
-          time: {
-              unit: 'week',
-              tooltipFormat: 'll'
-          },
-        }
-      }
+    //   prices = prices;
+    // } else {
+    //   // Convert timestamps and group prices by day
+    //   const groupedPrices = prices.reduce((acc, price) => {
+    //     // Create a unique key combining date and time (e.g., "YYYY-MM-DDTHH:mm:ss")
+    //     const dateKey = price.time.toISOString(); // Full ISO string for unique timestamp
+    //     console.log(dateKey)
+    //     if (!acc[dateKey]) {
+    //       acc[dateKey] = price; // Add the first occurrence of the specific timestamp
+    //     }
+    //     return acc;
+    //   }, {});
+      
+    
+    //   prices = Object.values(groupedPrices);
+      
+    // }
+
     }
-  });
+
+async function drawChart(coin, days) {
+  const chartData = await fetchCryptoCoinData(days, coin);  // Fetch Bitcoin data for 3 days
+
+  var data = google.visualization.arrayToDataTable(chartData);
+
+  var options = {
+    title: `${coin} Market Caps and Total Volumes Over the Last ${days} Days`,
+    curveType: 'function',
+    legend: { position: 'bottom' },
+    hAxis: { title: 'Time' },
+    vAxis: { title: 'Values (USD)' },
+    series: {
+      0: { targetAxisIndex: 0 },  // Market Caps on left axis
+      1: { targetAxisIndex: 1 }   // Total Volumes on right axis
+    },
+    vAxes: {
+      0: { title: 'Market Caps (USD)' },  // Left vertical axis title
+      1: { title: 'Total Volumes (USD)' } // Right vertical axis title
+    }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('selectedCoinChart'));
+
+  chart.draw(data, options);
 }
+
+// google.charts.setOnLoadCallback(drawChart);
 
 // Function to render selected coin data within no.of days
 function displaySelectedCoinData(coin, days, averagePrice, highPrice, lowPrice, latestMarketCap) {
@@ -137,9 +134,18 @@ function displaySelectedCoinData(coin, days, averagePrice, highPrice, lowPrice, 
                     <h5 class="card-title">Average Price: ${averagePrice.toLocaleString()}</h5>
                     <p> High: ${highPrice.toLocaleString()}</p>
                     <p> Low: ${lowPrice.toLocaleString()}</p>
-                    <p>Market Cap: ${latestMarketCap.toLocaleString()}</p>
                 </div>
             </div>
         </div>
     `;
 }
+
+function defaultDatePicker(){
+  const today = new Date();
+      
+  const yesterday = new Date(today.getTime() -(3 * 86400000));
+  const formattedDate = yesterday.toISOString().split('T')[0];
+
+  document.getElementById('datePicker').value = formattedDate;
+}
+defaultDatePicker();
