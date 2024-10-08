@@ -155,3 +155,16 @@ button{
 .offcanvas .nav-link{
     color: rgb(153, 85, 25);
 }
+
+html,body{
+  overflow-x: hidden;
+
+}
+#selectedCoinDisplayDiv .row{
+    width: 100%;            
+    overflow-x: scroll;        
+    white-space: nowrap;
+  }
+  
+
+  

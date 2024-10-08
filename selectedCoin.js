@@ -33,24 +33,29 @@ function selectedCoinData() {
 
 
 async function fetchCryptoCoinData(days,coin) {
-    // const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
-    // const data = await response.json();
-    const response = localStorage.getItem('selectedCoinData')
-    const data = JSON.parse(response)
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
+    const data = await response.json();
+    // const response = localStorage.getItem('selectedCoinData')
+    // const data = JSON.parse(response)
 
-    // localStorage.setItem('selectedCoinData', JSON.stringify(data))
+    localStorage.setItem('selectedCoinData', JSON.stringify(data))
     
-    var prices = [];
+    var prices = [
+      ['Date', 'Price']
+    ];
     var chartData = [
       ['Time', 'Market Caps', 'Total Volumes'],  // Define column headers
     ];
 
     for (let i = 0; i < data.market_caps.length; i++) {
       const time = new Date(data.market_caps[i][0]); // Convert timestamp to Date
+      const price = data.prices[i][1]
       const marketCap = data.market_caps[i][1];      // Get market cap value
       const totalVolume = data.total_volumes[i][1];  // Get total volume value
+      
       chartData.push([time, marketCap, totalVolume]); // Add both marketCap and totalVolume to chartData
-      prices.push(data.prices[i][1])
+      
+      prices.push([time, price])
     }
     document.getElementById('selectedCoinDisplayDiv').style.display = "block"
     document.getElementById('no_of_days').innerText = days
@@ -64,43 +69,25 @@ async function fetchCryptoCoinData(days,coin) {
     // const latestMarketCap = marketCap[marketCaps.length - 1];
     
     // drawChart(coin, days);
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart(chartData, days, coin));
+    google.charts.setOnLoadCallback(drawPriceChart(prices, coin));
 
 
     displaySelectedCoinData(coin, days, highPrice, lowPrice, averagePrice) 
     
     return chartData;
 
-    // if (days <= 1) {
+}
 
-    //   prices = prices;
-    // } else {
-    //   // Convert timestamps and group prices by day
-    //   const groupedPrices = prices.reduce((acc, price) => {
-    //     // Create a unique key combining date and time (e.g., "YYYY-MM-DDTHH:mm:ss")
-    //     const dateKey = price.time.toISOString(); // Full ISO string for unique timestamp
-    //     console.log(dateKey)
-    //     if (!acc[dateKey]) {
-    //       acc[dateKey] = price; // Add the first occurrence of the specific timestamp
-    //     }
-    //     return acc;
-    //   }, {});
-      
-    
-    //   prices = Object.values(groupedPrices);
-      
-    // }
-
-    }
-
-async function drawChart(coin, days) {
-  const chartData = await fetchCryptoCoinData(days, coin);  // Fetch Bitcoin data for 3 days
+async function drawChart(chartData, days, coin) {
 
   var data = google.visualization.arrayToDataTable(chartData);
 
   var options = {
     title: `${coin} Market Caps and Total Volumes Over the Last ${days} Days`,
     curveType: 'function',
+    width: 600,
+    height: 400,
     legend: { position: 'bottom' },
     hAxis: { title: 'Time' },
     vAxis: { title: 'Values (USD)' },
@@ -119,7 +106,19 @@ async function drawChart(coin, days) {
   chart.draw(data, options);
 }
 
-// google.charts.setOnLoadCallback(drawChart);
+function drawPriceChart(prices, coin) {
+  var data = google.visualization.arrayToDataTable(prices);
+
+  var options = {
+    title: `${coin} Price chart`,
+    width: 600,
+    height: 400,
+    bar: {groupWidth: "95%"},
+    legend: { position: "none" },
+  };
+  var chart = new google.visualization.ColumnChart(document.getElementById("selectedCoinPriceChart"));
+  chart.draw(data, options);
+}
 
 // Function to render selected coin data within no.of days
 function displaySelectedCoinData(coin, days, averagePrice, highPrice, lowPrice, latestMarketCap) {
@@ -131,7 +130,7 @@ function displaySelectedCoinData(coin, days, averagePrice, highPrice, lowPrice, 
                     <h5>${coin} prices(usd) in last ${days} days</h5>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Average Price: ${averagePrice.toLocaleString()}</h5>
+                    <h5 class="card-title">Avg Price: ${averagePrice.toLocaleString()}</h5>
                     <p> High: ${highPrice.toLocaleString()}</p>
                     <p> Low: ${lowPrice.toLocaleString()}</p>
                 </div>
@@ -149,3 +148,4 @@ function defaultDatePicker(){
   document.getElementById('datePicker').value = formattedDate;
 }
 defaultDatePicker();
+selectedCoinData(); 
