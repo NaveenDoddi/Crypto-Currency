@@ -160,11 +160,11 @@ html,body{
   overflow-x: hidden;
 
 }
-#selectedCoinDisplayDiv .row{
+#selectedCoinCharts .row{
     width: 100%;            
     overflow-x: scroll;        
     white-space: nowrap;
-  }
+}
   
 
   
