@@ -115,7 +115,7 @@
         </h4>
     
         <div class="row d-flex justify-content-end">
-            <div class="col-12 col-md-12 col-lg-6 mb-4" id="selectedCoinChart"></div>
+            <div class="col-12 col-md-12 col-lg-6 mb-4" id="selectedCoinCandleChart"></div>
     
             <div class="col-12 col-md-12 col-lg-6 mb-4" id="selectedCoinPriceChart"></div>
         </div>
@@ -132,30 +132,31 @@
     </div>
 
     <div class="containe">
-        <input type="text" class="form-control search-bar" id="searchBar" placeholder="Search for a cryptocurrency...">
 
-        <select class="form-control search-bar" id="filterBar">
-            <option value="all">All</option>
-            <option value="highMarketCap">High Market Cap</option>
-            <option value="lowMarketCap">Low Market Cap</option>
-            <option value="positiveChange">Positive 24h Change</option>
-            <option value="negativeChange">Negative 24h Change</option>
-        </select>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <input type="text" class="form-control search-bar" id="searchBar" onchange="searchingCoins()" placeholder="Search for a cryptocurrency...">
+            </div>
+            <div class="col-sm-12 col-md-6">
+
+                <select class="form-control search-bar" id="filterBar"  onchange="filteringCoins()">
+                    <option value="all">All</option>
+                    <option value="highMarketCap">High Market Cap</option>
+                    <option value="lowMarketCap">Low Market Cap</option>
+                    <option value="positiveChange">Positive 24h Change</option>
+                    <option value="negativeChange">Negative 24h Change</option>
+                </select>
+
+            </div>
+        </div>
 
         <div class="row d-flex justify-content-center" id="charts">
+
             <div class="col-md-6">
-                <h4 class="text-center"> 24h Price Change (%) </h4>
                 <div id="change24_chart"></div>
             </div>
-            
-            <div class="col-md-6">
-                <h4 class="text-center"> Market Capitalization (USD) </h4>
-                <div id="marketCap_chart"></div>
-            </div>
-
-
-            <div class="col-10 mb-3">
-                <h4 class="text-center">Cryptocurrency Prices</h4>
+        
+            <div>
                 <div id="price_chart"></div>
             </div>
         </div>
@@ -163,7 +164,7 @@
         <div id="crypto-data-div">
             <h4 class="text-center">Crypto Currency Coins <img src="inside-crypto-cryptocurrency.png" alt="" style="width: 50px; height: 50px;" class="mr-2 rounded-circle"></h4>
             <div class="row" id="crypto-data">
-                <!-- Data will be inserted here -->
+                <!-- Data cards will be inserted here -->
             </div>
             <div class="d-flex justify-content-end">
                 <button id="showMoreBtn" onclick="showMore()" class="btn btn-primary mt-3">Show More</button> <!-- Show More Button -->

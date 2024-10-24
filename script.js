@@ -3,7 +3,7 @@ let allData = []; // Store all the fetched data to filter and update charts
 let COIN_LIMIT = 10; // Set the limit for the number of coins to display
 let currentDisplayCount = 10; // Starting number of coins displayed
 const increment = 10; // Number of cards to display each time the button is clicked
-let chartData = [['Coin', 'Low', 'Opening', 'Closing', 'High']]
+let chartData = [['Coin', 'Opening', 'High', 'Closing']]
 let marketCaps = [['Name', 'MarketCap']];
 
 google.charts.load('current', {'packages': ['corechart']});
@@ -21,13 +21,15 @@ async function fetchCryptoData() {
 
     const sortedData = allData.sort((a, b) => b.current_price - a.current_price);
 
-    chartData = arrangeData(sortedData.slice(5, currentDisplayCount+3));
-    displayData(sortedData.slice(0, currentDisplayCount+3));
+    chartData = arrangeData(sortedData);
+    displayData(sortedData);
     
 
 }
 
 function arrangeData(data){
+
+    data = data.slice(3, currentDisplayCount+5)
 
     data.forEach(coin => {
         const name = coin.name;
@@ -37,13 +39,14 @@ function arrangeData(data){
         const ath = Number(coin.ath.toFixed(2));
         const atl = Number(coin.atl.toFixed(2));
 
-        chartData.push([name, l24, l24, current, h24]);
+        chartData.push([name, l24, h24, current]);
     })
 
     return chartData
 }
 
 async function displayData(data) {
+    data = data.slice(0, currentDisplayCount+3)
     const container = document.getElementById('crypto-data');
     container.innerHTML = ''; // Clear previous content
 
@@ -114,27 +117,29 @@ async function displayData(data) {
     // display charts 
     google.charts.setOnLoadCallback(drawPriceChart);
     
-    google.charts.setOnLoadCallback(drawMarketChart);
+    // google.charts.setOnLoadCallback(drawMarketChart);
 
 }
 
 // Show more function
 function showMore() {
     currentDisplayCount += increment;
-    displayData(chartData.slice(0, currentDisplayCount)); // Update display to show more coins
+    displayData(allData.slice(0, currentDisplayCount)); // Update display to show more coins
 }
 
 // Search functionality
-document.getElementById('searchBar').addEventListener('input', function () {
-    const searchValue = this.value.toLowerCase();
+function searchingCoins() {
+    const searchValue = document.getElementById('searchBar').value.toLowerCase();
     const filteredData = allData.filter(coin => coin.name.toLowerCase().includes(searchValue));
-    chartData = filteredData
+    chartData = arrangeData(filteredData)
+    
     displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
-});
+};
 
 // Filter functionality
-document.getElementById('filterBar').addEventListener('change', function () {
-    const filterValue = this.value;
+function filteringCoins(){
+
+    const filterValue =document.getElementById('filterBar').value
     let filteredData = [...allData];
 
     if (filterValue === 'highMarketCap') {
@@ -146,9 +151,11 @@ document.getElementById('filterBar').addEventListener('change', function () {
     } else if (filterValue === 'negativeChange') {
         filteredData = filteredData.filter(coin => coin.price_change_percentage_24h <= 0);
     }
-    chartData = filteredData
+    chartData = arrangeData(filteredData)
+    console.log(chartData)
+    google.charts.setOnLoadCallback(drawPriceChart);
     displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
-});
+};
 
 function toggleDetails(element) {
     element.classList.toggle('active');
@@ -157,16 +164,35 @@ function toggleDetails(element) {
 fetchCryptoData();
 
 function drawPriceChart() {
+    console.log(chartData)
     var data = google.visualization.arrayToDataTable(chartData);
 
-    var options = {
-      legend: 'none',
-      candlestick: {
-        fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
-        risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
-      }
+    const options = {
+
+        title: 'Coin Prices in 24h',
+        width: '100%',
+        height: 400,
+        chartArea: { left: '10%', width: '90%' },
+    
+        titleTextStyle: { fontSize: 18, bold: true },
+        legend: { position: 'top', alignment: 'center' },
+        colors:['lightgreen', 'green','#20b2aa'],
+        hAxis: {
+          title: 'Date',
+          slantedText: true,
+          textStyle: { fontSize: 12 }
+        },
+        vAxis: {
+          title: 'Market Cap (in trillions)',
+          format: 'short',
+          textStyle: { fontSize: 12 },
+          gridlines: { color: '#e0e0e0' }
+        },
+        tooltip: { isHtml: true },
+        backgroundColor: '#f5f5f5'
     };
-    var chart = new google.visualization.CandlestickChart(document.getElementById('price_chart'));
+      
+    var chart = new google.visualization.ColumnChart(document.getElementById('price_chart'));
     chart.draw(data, options);
 }
 
@@ -174,12 +200,31 @@ function drawMarketChart() {
     var data = google.visualization.arrayToDataTable(marketCaps);
 
     var options = {
-        title: ` Market chart`,
-        width: 600,
+        title: `MarketPrice Chart`,
+        titleTextStyle: { fontSize: 18, bold: true },
+        width: '100%',  // Responsive layout
         height: 400,
-        bar: {groupWidth: "95%"},
-        legend: { position: "none" },
-    };
+        bar: { groupWidth: '75%' },  // Balanced bar width for clarity
+        legend: { position: 'top', alignment: 'center', textStyle: { fontSize: 12 } },
+        hAxis: { 
+            title: 'Date', 
+            slantedText: true,  // Prevents label overlap
+            textStyle: { fontSize: 12 },
+            gridlines: { color: '#e0e0e0' } 
+        },
+        vAxis: { 
+            title: 'Price (USD)', 
+            format: 'short',  // Compact number format (e.g., 1.2M)
+            textStyle: { fontSize: 12 },
+            gridlines: { color: '#e0e0e0' }
+        },
+        chartArea: { left: '10%', width: '80%', height: '70%' },  // Optimize layout
+        colors: ['#4285F4'],  // Use Google’s brand color for familiarity
+        backgroundColor: { fill: '#f9f9f9' },  // Light background for readability
+        tooltip: { isHtml: true },  // Enhanced tooltip display
+        animation: { startup: true, duration: 500, easing: 'inAndOut' }  // Smooth rendering
+      };
+    
 
     var chart = new google.visualization.ColumnChart(document.getElementById('marketCap_chart'));
     chart.draw(data, options);

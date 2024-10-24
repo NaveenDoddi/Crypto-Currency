@@ -127,7 +127,7 @@ async function fetchCryptoCoinData(days,coin) {
 
     // const latestMarketCap = marketCap[marketCaps.length - 1];
     
-    drawChart(chartData);
+    // drawChart(chartData);
     drawCandleSticks(candleStickData);
     drawPriceChart(priceData);
 
@@ -184,6 +184,7 @@ async function drawChart(chartData) {
 }
 
 function drawCandleSticks(data) {
+  console.log('data', data)
 
   var data = google.visualization.arrayToDataTable(data);
 
@@ -191,6 +192,7 @@ function drawCandleSticks(data) {
 
     title: 'Prices',
     width: '100%',
+    height: 400,
     // chartArea: { left: '10%', width: '80%', height: '70%' },
 
     titleTextStyle: { fontSize: 18, bold: true },
@@ -215,7 +217,7 @@ function drawCandleSticks(data) {
   };
   
 
-  var chart = new google.visualization.CandlestickChart(document.getElementById('candleStick_chart'));
+  var chart = new google.visualization.CandlestickChart(document.getElementById('selectedCoinCandleChart'));
   chart.draw(data, options);
 }
 
@@ -224,12 +226,12 @@ function drawPriceChart(priceData) {
   var options = {
     title: `Price Chart`,
     titleTextStyle: { fontSize: 18, bold: true },
-    width: '90%',  // Responsive layout
+    width: '100%',  // Responsive layout
     height: 400,
     bar: { groupWidth: '75%' },  // Balanced bar width for clarity
     legend: { position: 'top', alignment: 'center', textStyle: { fontSize: 12 } },
     hAxis: { 
-        title: 'Time', 
+        title: 'Date', 
         slantedText: true,  // Prevents label overlap
         textStyle: { fontSize: 12 },
         gridlines: { color: '#e0e0e0' } 
@@ -281,4 +283,4 @@ function defaultDatePicker(){
 
 defaultDatePicker();
 selectedCoinData(); 
-window.addEventListener('resize', drawChart(chartData), drawCandleSticks(candleStickData), drawPriceChart(priceData));
+// window.addEventListener('resize', drawChart(chartData), drawCandleSticks(candleStickData), drawPriceChart(priceData));
