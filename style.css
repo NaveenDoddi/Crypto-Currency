@@ -165,6 +165,15 @@ html,body{
     overflow-x: scroll;        
     white-space: nowrap;
 }
-  
 
-  
+.card-icon-border-large {
+    width: 40px;
+    height: 40px;
+    
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid;
+    border-radius: 50%;
+    font-size: 1.88rem;
+    color: rgb(102, 102, 102);
+}

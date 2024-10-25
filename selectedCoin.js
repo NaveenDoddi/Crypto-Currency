@@ -129,10 +129,10 @@ async function fetchCryptoCoinData(days,coin) {
     
     // drawChart(chartData);
     drawCandleSticks(candleStickData);
-    drawPriceChart(priceData);
+    drawPriceChart1(priceData);
 
     // google.charts.setOnLoadCallback(drawChart(chartData, days, coin));
-    // google.charts.setOnLoadCallback(drawPriceChart(prices, coin));
+    // google.charts.setOnLoadCallback(drawPriceChart1(prices, coin));
 
 
     displaySelectedCoinData(coin, days, highPrice, lowPrice, averagePrice) 
@@ -221,7 +221,7 @@ function drawCandleSticks(data) {
   chart.draw(data, options);
 }
 
-function drawPriceChart(priceData) {
+function drawPriceChart1(priceData) {
   var data = google.visualization.arrayToDataTable(priceData);
   var options = {
     title: `Price Chart`,
@@ -283,4 +283,4 @@ function defaultDatePicker(){
 
 defaultDatePicker();
 selectedCoinData(); 
-// window.addEventListener('resize', drawChart(chartData), drawCandleSticks(candleStickData), drawPriceChart(priceData));
+// window.addEventListener('resize', drawChart(chartData), drawCandleSticks(candleStickData), drawPriceChart11(priceData));

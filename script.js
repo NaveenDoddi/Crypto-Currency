@@ -21,7 +21,7 @@ async function fetchCryptoData() {
 
     const sortedData = allData.sort((a, b) => b.current_price - a.current_price);
 
-    chartData = arrangeData(sortedData);
+    chartData = arrangeData(sortedData.slice(3, currentDisplayCount+5));
     displayData(sortedData);
     
 
@@ -29,7 +29,7 @@ async function fetchCryptoData() {
 
 function arrangeData(data){
 
-    data = data.slice(3, currentDisplayCount+5)
+    data = data.slice(0, currentDisplayCount)
 
     data.forEach(coin => {
         const name = coin.name;
@@ -69,10 +69,12 @@ async function displayData(data) {
             <div class="card shadow-sm mb-4">
                 <div class="card-body" onclick="toggleDetails(this)" style="cursor: pointer;">
                     <h5 class="card-title text-center">${name}</h5>
+                    
                     <div class="card-text d-flex justify-content-between">
                         <img src="${coin.image}" alt="${name}" class="rounded-circle border border-secondary" style="width: 40px; height: 40px; margin-right: 10px;">
                         <span class="font-weight-bold">${coin.symbol.toUpperCase()}</span>
                     </div>
+
                     <div class="collapse-content mt-3 p-3" style="border-radius:10px">
                         <p><strong>24h High:</strong> ${h24.toFixed(2)}</p>
                         <p><strong>ATH:</strong> ${ath.toFixed(2)}</p>
@@ -81,7 +83,11 @@ async function displayData(data) {
                         <p><strong>24h Profit/Loss:</strong> ${coin.price_change_percentage_24h.toFixed(2)}%</p>
                         <p><strong>Market Cap Change 24h:</strong> ${coin.market_cap_change_24h.toLocaleString()}</p>
                     </div>
+                    <div class="text-center">
+                      <i class="fa-solid fa-caret-down text-primary fs-2" aria-hidden="true"></i>
+                    </div>
                 </div>
+                
                 <div class="card-footer bg-white d-flex justify-content-between align-items-center">
                     <div class="price">
                         <strong>Price:</strong> $${current}
@@ -92,6 +98,7 @@ async function displayData(data) {
                     <div class="change">                        
                         <span class="badge ${coin.price_change_percentage_24h >= 0 ? 'bg-success' : 'bg-danger'}">
                             ${coin.price_change_percentage_24h.toFixed(2)}%
+                            
                         </span>
                     </div>
                 </div>
@@ -128,13 +135,14 @@ function showMore() {
 }
 
 // Search functionality
-function searchingCoins() {
-    const searchValue = document.getElementById('searchBar').value.toLowerCase();
+const input = document.getElementById("searchBar"); 
+input.addEventListener("input", () => { 
+    const searchValue = input.value.toLowerCase();
     const filteredData = allData.filter(coin => coin.name.toLowerCase().includes(searchValue));
     chartData = arrangeData(filteredData)
     
     displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
-};
+});
 
 // Filter functionality
 function filteringCoins(){
@@ -152,8 +160,6 @@ function filteringCoins(){
         filteredData = filteredData.filter(coin => coin.price_change_percentage_24h <= 0);
     }
     chartData = arrangeData(filteredData)
-    console.log(chartData)
-    google.charts.setOnLoadCallback(drawPriceChart);
     displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
 };
 
@@ -164,7 +170,7 @@ function toggleDetails(element) {
 fetchCryptoData();
 
 function drawPriceChart() {
-    console.log(chartData)
+
     var data = google.visualization.arrayToDataTable(chartData);
 
     const options = {
