@@ -221,7 +221,6 @@ function drawCandleSticks(data) {
   chart.draw(data, options);
 }
 
-
 function drawPriceChart1(priceData) {
   var data = google.visualization.arrayToDataTable(priceData);
   var options = {
