@@ -127,10 +127,9 @@ async function fetchCryptoCoinData(days,coin) {
 
     // const latestMarketCap = marketCap[marketCaps.length - 1];
     
-    // drawChart(chartData);
-    drawCandleSticks(candleStickData);
-    drawPriceChart1(priceData);
 
+    google.charts.setOnLoadCallback(() => drawCandleSticks(candleStickData));
+    google.charts.setOnLoadCallback(() => drawPriceChart1(priceData));
     // google.charts.setOnLoadCallback(drawChart(chartData, days, coin));
     // google.charts.setOnLoadCallback(drawPriceChart1(prices, coin));
 
@@ -184,7 +183,6 @@ async function drawChart(chartData) {
 }
 
 function drawCandleSticks(data) {
-  console.log('data', data)
 
   var data = google.visualization.arrayToDataTable(data);
 

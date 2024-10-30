@@ -3,7 +3,7 @@ let allData = []; // Store all the fetched data to filter and update charts
 let COIN_LIMIT = 10; // Set the limit for the number of coins to display
 let currentDisplayCount = 10; // Starting number of coins displayed
 const increment = 10; // Number of cards to display each time the button is clicked
-let chartData = [['Coin', 'Opening', 'High', 'Closing']]
+// let chartData = [['Coin', 'Opening', 'High', 'Closing']]
 let marketCaps = [['Name', 'MarketCap']];
 
 google.charts.load('current', {'packages': ['corechart']});
@@ -21,15 +21,12 @@ async function fetchCryptoData() {
 
     const sortedData = allData.sort((a, b) => b.current_price - a.current_price);
 
-    chartData = arrangeData(sortedData.slice(3, currentDisplayCount+5));
-    displayData(sortedData);
-    
+    displayData(sortedData);    
 
 }
 
 function arrangeData(data){
-
-    data = data.slice(0, currentDisplayCount)
+    var result = [['Coin', 'Opening', 'High', 'Closing']]
 
     data.forEach(coin => {
         const name = coin.name;
@@ -39,14 +36,15 @@ function arrangeData(data){
         const ath = Number(coin.ath.toFixed(2));
         const atl = Number(coin.atl.toFixed(2));
 
-        chartData.push([name, l24, h24, current]);
+        result.push([name, l24, h24, current]);
     })
 
-    return chartData
+    return result
 }
 
 async function displayData(data) {
     data = data.slice(0, currentDisplayCount+3)
+    
     const container = document.getElementById('crypto-data');
     container.innerHTML = ''; // Clear previous content
 
@@ -121,57 +119,19 @@ async function displayData(data) {
 
 
     });
-    // display charts 
-    google.charts.setOnLoadCallback(drawPriceChart);
-    
+    // display charts
+    let chartData = arrangeData(data) 
+    google.charts.setOnLoadCallback(() => drawPriceChart(chartData));
+    // setTimeout(google.charts.setOnLoadCallback(drawPriceChart(chartData)), 1000);
     // google.charts.setOnLoadCallback(drawMarketChart);
 
 }
 
-// Show more function
-function showMore() {
-    currentDisplayCount += increment;
-    displayData(allData.slice(0, currentDisplayCount)); // Update display to show more coins
-}
-
-// Search functionality
-const input = document.getElementById("searchBar"); 
-input.addEventListener("input", () => { 
-    const searchValue = input.value.toLowerCase();
-    const filteredData = allData.filter(coin => coin.name.toLowerCase().includes(searchValue));
-    chartData = arrangeData(filteredData)
-    
-    displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
-});
-
-// Filter functionality
-function filteringCoins(){
-
-    const filterValue =document.getElementById('filterBar').value
-    let filteredData = [...allData];
-
-    if (filterValue === 'highMarketCap') {
-        filteredData = filteredData.filter(coin => coin.market_cap >= 1000000000);
-    } else if (filterValue === 'lowMarketCap') {
-        filteredData = filteredData.filter(coin => coin.market_cap < 1000000000);
-    } else if (filterValue === 'positiveChange') {
-        filteredData = filteredData.filter(coin => coin.price_change_percentage_24h > 0);
-    } else if (filterValue === 'negativeChange') {
-        filteredData = filteredData.filter(coin => coin.price_change_percentage_24h <= 0);
-    }
-    chartData = arrangeData(filteredData)
-    displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
-};
-
-function toggleDetails(element) {
-    element.classList.toggle('active');
-}
-
 fetchCryptoData();
 
-function drawPriceChart() {
+async function drawPriceChart(data){
 
-    var data = google.visualization.arrayToDataTable(chartData);
+    var data = await google.visualization.arrayToDataTable(data);
 
     const options = {
 
@@ -201,6 +161,37 @@ function drawPriceChart() {
     var chart = new google.visualization.ColumnChart(document.getElementById('price_chart'));
     chart.draw(data, options);
 }
+
+
+// Search functionality
+const input = document.getElementById("searchBar"); 
+input.addEventListener("input", () => { 
+    const searchValue = input.value.toLowerCase();
+    const filteredData = allData.filter(coin => coin.name.toLowerCase().includes(searchValue));
+    // chartData = arrangeData(filteredData)
+    
+    // displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
+    displayData(filteredData); // Update UI and charts
+});
+
+// Filter functionality
+function filteringCoins(){
+
+    const filterValue =document.getElementById('filterBar').value
+    let filteredData = [...allData];
+
+    if (filterValue === 'highMarketCap') {
+        filteredData = filteredData.filter(coin => coin.market_cap >= 1000000000);
+    } else if (filterValue === 'lowMarketCap') {
+        filteredData = filteredData.filter(coin => coin.market_cap < 1000000000);
+    } else if (filterValue === 'positiveChange') {
+        filteredData = filteredData.filter(coin => coin.price_change_percentage_24h > 0);
+    } else if (filterValue === 'negativeChange') {
+        filteredData = filteredData.filter(coin => coin.price_change_percentage_24h <= 0);
+    }
+    
+    displayData(filteredData); // Update UI and charts
+};
 
 function drawMarketChart() {
     var data = google.visualization.arrayToDataTable(marketCaps);
@@ -234,4 +225,14 @@ function drawMarketChart() {
 
     var chart = new google.visualization.ColumnChart(document.getElementById('marketCap_chart'));
     chart.draw(data, options);
+}
+
+// Show more function
+function showMore() {
+    currentDisplayCount += increment;
+    displayData(allData.slice(0, currentDisplayCount)); // Update display to show more coins
+}
+
+function toggleDetails(element) {
+    element.classList.toggle('active');
 }

@@ -10,10 +10,8 @@
 
     <script src="https://kit.fontawesome.com/accd26a21f.js" crossorigin="anonymous"></script> <!-- icons -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> <!-- maps-->
-
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     
 </head>
 <body>
@@ -106,8 +104,7 @@
     
 
     <!--selected coin chart display -->
-    <div class="containe">
-
+    <div>
         <div class="p-3 text-center" id="selectedCoinCharts" style="display: none;">
 
         <h4>
@@ -131,7 +128,44 @@
         <div id="coin-details-container" class="row justify-content-center"></div>
     </div>
 
-    <div class="containe">
+    <div id="carouselIndicators" class="carousel carousel-dark slide">
+        
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                <img src="trending.jpg" alt="">
+            </button>
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2">
+                <img src="trending.jpg" alt="">
+            </button>
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3">
+                <img src="trending.jpg" alt="">
+            </button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="mt-4">
 
         <div class="row">
             <div class="col-sm-12 col-md-6">
@@ -180,8 +214,9 @@
 </footer>
 
 <script src="script.js"></script>
-<script src="trending-script.js"></script>
+<!-- <script src="trending-script.js"></script> -->
 <script src="selectedCoin.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
