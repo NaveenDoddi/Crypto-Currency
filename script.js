@@ -21,9 +21,15 @@ async function fetchCryptoData() {
 
     const sortedData = allData.sort((a, b) => b.current_price - a.current_price);
 
-    displayData(sortedData);    
+    displayData(sortedData);
+
+    var carouselData = data.slice(0, 3)
+
+    displayCarousels(carouselData)
 
 }
+fetchCryptoData();
+
 
 function arrangeData(data){
     var result = [['Coin', 'Opening', 'High', 'Closing']]
@@ -42,7 +48,75 @@ function arrangeData(data){
     return result
 }
 
-async function displayData(data) {
+function displayCarousels(data){
+    const container = document.getElementById('carouselBody');
+
+    data.forEach(coin => {
+        const name = coin.name;
+        const current = Number(coin.current_price.toFixed(2))
+        const h24 = Number(coin.high_24h.toFixed(2));
+        const l24 = Number(coin.low_24h.toFixed(2));
+        const ath = Number(coin.ath.toFixed(2));
+        const atl = Number(coin.atl.toFixed(2));
+
+        const carousel = document.createElement('div');
+        carousel.className = 'carousel-item';
+
+        carousel.innerHTML = `
+            <div class="card shadow-sm mb-4">
+                <div class="card-body" style="cursor: pointer;">
+                    <h5 class="card-title text-center">${name}</h5>
+                    
+                    <div class="card-text d-flex justify-content-between">
+                        <img src="${coin.image}" alt="${name}" class="rounded-circle border border-secondary" style="width: 40px; height: 40px; margin-right: 10px;">
+                        <span class="font-weight-bold">${coin.symbol.toUpperCase()}</span>
+                    </div>
+
+                    <table class="table table-borderless table-hover mt-3 p-3 w-100" style="border-radius:10px">
+                        <tr>
+                            <td><strong>24h High:</strong> ${h24.toFixed(2)}</td> 
+                            <td><strong>24h Low:</strong> ${l24.toFixed(2)}</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>ATH:</strong> ${ath.toFixed(2)}</td>
+                            <td><strong>ATL:</strong> ${atl.toFixed(2)}</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>24h Profit/Loss:</strong> ${coin.price_change_percentage_24h.toFixed(2)}%</td>
+                            <td><strong>Market Cap Change 24h:</strong> ${coin.market_cap_change_24h.toLocaleString()}</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+                
+                <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                    <div class="price">
+                        <strong>Price:</strong> $${current}
+                    </div>
+                    <div class="market-cap">
+                        <strong>Market-Cap:</strong> $${coin.market_cap.toLocaleString()}
+                    </div>
+                    <div class="change">                        
+                        <span class="badge ${coin.price_change_percentage_24h >= 0 ? 'bg-success' : 'bg-danger'}">
+                            ${coin.price_change_percentage_24h.toFixed(2)}%
+                            
+                        </span>
+                    </div>
+                </div>
+            </div>
+        `
+        container.appendChild(carousel);
+
+    })
+
+    document.getElementsByClassName("carousel-item")[0].className = "carousel-item active"
+}
+
+function displayData(data) {
+    
     data = data.slice(0, currentDisplayCount+3)
     
     const container = document.getElementById('crypto-data');
@@ -119,6 +193,7 @@ async function displayData(data) {
 
 
     });
+
     // display charts
     let chartData = arrangeData(data) 
     google.charts.setOnLoadCallback(() => drawPriceChart(chartData));
@@ -126,8 +201,6 @@ async function displayData(data) {
     // google.charts.setOnLoadCallback(drawMarketChart);
 
 }
-
-fetchCryptoData();
 
 async function drawPriceChart(data){
 

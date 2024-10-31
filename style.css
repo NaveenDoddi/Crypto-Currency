@@ -188,11 +188,12 @@ html,body{
     text-shadow: none;
     margin-top: 30px;
 }
-.carousel-control-prev {
-    left: -60px;
+.carousel-item tr{
+    display: flex;
+    justify-content: space-around;
 }
-.carousel-control-next {
-    right: -60px;
+.carousel-item tr td{
+    text-align: right;
 }
 .carousel-indicators {
     right: 50%;
@@ -222,16 +223,6 @@ html,body{
 }
 .carousel-inner {
     min-height: 300px;
-}
-.item blockquote {
-    border-left: none;
-    margin: 0;
-}
-.item blockquote p:before {
-    content: "\f10d";
-    font-family: 'Fontawesome';
-    float: left;
-    margin-right: 10px;
 }
 
 /* carausel ends here */
