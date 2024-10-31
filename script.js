@@ -78,7 +78,7 @@ function displayCarousels(data){
                     </div>
                 </div>
 
-                <div class="card-body" style="cursor: pointer;">
+                <div class="card-body">
 
                     <div class="bg-white d-flex justify-content-around">
                         <div class="price">
@@ -96,18 +96,22 @@ function displayCarousels(data){
 
                     <table class="table table-borderless table-hover mt-3 p-3 w-100" style="border-radius:10px">
                         <tr>
-                            <td><strong>24h High:</strong> ${h24.toFixed(2)}</td> 
-                            <td><strong>24h Low:</strong> ${l24.toFixed(2)}</td>
+                            <td><strong> High :</strong> ${h24.toFixed(2)}</td> 
+                            <td><strong> Low :</strong> ${l24.toFixed(2)}</td>
                         </tr>
 
                         <tr>
-                            <td><strong>ATH:</strong> ${ath.toFixed(2)}</td>
-                            <td><strong>ATL:</strong> ${atl.toFixed(2)}</td>
+                            <td><strong>All Time High:</strong> ${ath.toFixed(2)}</td>
+                            <td><strong>All Time Low:</strong> ${atl.toFixed(2)}</td>
                         </tr>
 
                         <tr>
-                            <td><strong>24h Profit/Loss:</strong> ${coin.price_change_percentage_24h.toFixed(2)}%</td>
-                            <td><strong>Market Cap Change 24h:</strong> ${coin.market_cap_change_24h.toLocaleString()}</td>
+                            <td><strong>Profit/Loss: </strong> ${coin.price_change_percentage_24h.toFixed(2)}%</td>
+                            <td><strong>Market Cap: </strong> ${coin.market_cap_change_24h.toLocaleString()}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"></td>
+                        
                         </tr>
 
                     </table>

@@ -34,11 +34,11 @@ function selectedCoinData() {
 
 async function fetchCryptoCoinData(days,coin) {
 
-    // const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
-    // const data = await response.json();
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
+    const data = await response.json();
 
-    const response = localStorage.getItem('selectedCoinData')
-    const data = JSON.parse(response)
+    // const response = localStorage.getItem('selectedCoinData')
+    // const data = JSON.parse(response)
 
     localStorage.setItem('selectedCoinData', JSON.stringify(data))
     
