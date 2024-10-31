@@ -1,9 +1,7 @@
 let priceChart, changeChart, marketCapChart;
-let allData = []; // Store all the fetched data to filter and update charts
 let COIN_LIMIT = 10; // Set the limit for the number of coins to display
 let currentDisplayCount = 10; // Starting number of coins displayed
 const increment = 10; // Number of cards to display each time the button is clicked
-// let chartData = [['Coin', 'Opening', 'High', 'Closing']]
 let marketCaps = [['Name', 'MarketCap']];
 
 google.charts.load('current', {'packages': ['corechart']});
@@ -16,15 +14,13 @@ async function fetchCryptoData() {
     const response = localStorage.getItem('cryptoData')
     const data = JSON.parse(response)
 
-    allData = data;
-    localStorage.setItem("cryptoData", JSON.stringify(allData));
+    localStorage.setItem("cryptoData", JSON.stringify(data));
 
-    const sortedData = allData.sort((a, b) => b.current_price - a.current_price);
+    const sortedData = data.sort((a, b) => b.current_price - a.current_price);
 
-    displayData(sortedData);
+    displayData(sortedData.slice(4, 13));
 
-    var carouselData = data.slice(0, 3)
-
+    var carouselData = data.slice(0, 4)
     displayCarousels(carouselData)
 
 }
@@ -49,9 +45,17 @@ function arrangeData(data){
 }
 
 function displayCarousels(data){
-    const container = document.getElementById('carouselBody');
+    const carouselBody = document.getElementById('carouselBody');
+    const carouselIndicators = document.getElementById("carousel-indicators");
 
-    data.forEach(coin => {
+    data.forEach((coin, index) => {
+
+        const indicator = document.createElement("span");
+        indicator.innerHTML = `
+            <img type="button" src="${coin.image}" data-bs-target="#carouselIndicators" data-bs-slide-to="${index}" class="indicators" aria-current="true" aria-label="Slide ${index}">
+        `
+        carouselIndicators.append(indicator)
+
         const name = coin.name;
         const current = Number(coin.current_price.toFixed(2))
         const h24 = Number(coin.high_24h.toFixed(2));
@@ -64,12 +68,30 @@ function displayCarousels(data){
 
         carousel.innerHTML = `
             <div class="card shadow-sm mb-4">
-                <div class="card-body" style="cursor: pointer;">
+
+                <div class="card-header">
                     <h5 class="card-title text-center">${name}</h5>
                     
                     <div class="card-text d-flex justify-content-between">
                         <img src="${coin.image}" alt="${name}" class="rounded-circle border border-secondary" style="width: 40px; height: 40px; margin-right: 10px;">
                         <span class="font-weight-bold">${coin.symbol.toUpperCase()}</span>
+                    </div>
+                </div>
+
+                <div class="card-body" style="cursor: pointer;">
+
+                    <div class="bg-white d-flex justify-content-around">
+                        <div class="price">
+                            <strong>Price:</strong> $${current}
+                        </div>
+                        <div class="market-cap">
+                            <strong>Market-Cap:</strong> $${coin.market_cap.toLocaleString()}
+                        </div>
+                        <div class="change">                
+                            <span class="badge ${coin.price_change_percentage_24h >= 0 ? 'bg-success' : 'bg-danger'}">
+                                ${coin.price_change_percentage_24h.toFixed(2)}%
+                            </span>
+                        </div>
                     </div>
 
                     <table class="table table-borderless table-hover mt-3 p-3 w-100" style="border-radius:10px">
@@ -91,28 +113,15 @@ function displayCarousels(data){
                     </table>
 
                 </div>
-                
-                <div class="card-footer bg-white d-flex justify-content-between align-items-center">
-                    <div class="price">
-                        <strong>Price:</strong> $${current}
-                    </div>
-                    <div class="market-cap">
-                        <strong>Market-Cap:</strong> $${coin.market_cap.toLocaleString()}
-                    </div>
-                    <div class="change">                        
-                        <span class="badge ${coin.price_change_percentage_24h >= 0 ? 'bg-success' : 'bg-danger'}">
-                            ${coin.price_change_percentage_24h.toFixed(2)}%
-                            
-                        </span>
-                    </div>
-                </div>
+
             </div>
         `
-        container.appendChild(carousel);
+        carouselBody.appendChild(carousel);
 
     })
 
     document.getElementsByClassName("carousel-item")[0].className = "carousel-item active"
+    document.getElementsByClassName("indicators")[0].className = "indicators active"
 }
 
 function displayData(data) {

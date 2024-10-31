@@ -181,13 +181,6 @@ html,body{
 
 /* Carousel */
 
-.carousel-control {
-    background: none;
-    color: #CACACA;
-    font-size: 2.3em;
-    text-shadow: none;
-    margin-top: 30px;
-}
 .carousel-item tr{
     display: flex;
     justify-content: space-around;
@@ -195,28 +188,29 @@ html,body{
 .carousel-item tr td{
     text-align: right;
 }
-.carousel-indicators {
-    right: 50%;
-    top: auto;
-    bottom: 0px;
-    margin-right: -19px;
+
+.carousel-indicators{
+    display: flex;
+    align-items:baseline;
 }
-.carousel-indicators button {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
+
+.carousel-indicators .indicators {
+    position: relative;
+    width: 30px !important;                  
+    height: 30px !important;
+    border-radius: 50%;           
+    padding: 0;                   
+    border: none;                 
+    overflow: hidden;             
+    background-color: transparent;
     cursor: pointer;
-    border: 4px solid #CCC;
-    border-radius: 50px;
-    opacity: 0.4;
-    overflow: hidden;
-    transition: all 0.4s;
 }
+
 .carousel-indicators .active {
     background: #333333;
-    width: 128px;
-    height: 128px;
-    border-radius: 100px;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 100%;
     border-color: #f33;
     opacity: 1;
     overflow: hidden;
