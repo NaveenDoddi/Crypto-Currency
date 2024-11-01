@@ -253,20 +253,37 @@ function drawPriceChart1(priceData) {
 
 // Function to render selected coin data within no.of days
 function displaySelectedCoinData(coin, days, highPrice, lowPrice, averagePrice, latestMarketCap) {
+  console.log(coin, days, highPrice, lowPrice, averagePrice)
     
     document.getElementById('selectedCoinData').innerHTML = `
-        <div>
-            <div class="card">
-                <div class="card-header">
-                    <h5>${coin} prices(usd) in last ${days} days</h5>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Avg Price: ${averagePrice}</h5>
-                    <p> High: ${highPrice}</p>
-                    <p> Low: ${lowPrice}</p>
-                </div>
-            </div>
-        </div>
+        <div class="">
+          <div class="card shadow-sm border-0" style="border-radius: 10px;">
+              <!-- Card Header with Title -->
+              <div class="card-header text-white text-center" style="border-radius: 10px 10px 0 0;">
+                  <h5 class="mb-0">${coin} Prices (USD) in Last ${days} Days</h5>
+              </div>
+
+              <!-- Card Body with Price Information -->
+              <div class="card-body bg-light">
+                  <div class="d-flex flex-column align-items-center">
+                      <!-- Average Price with Larger Font for Emphasis -->
+                      <h5 class="card-title font-weight-bold text-primary mb-3">
+                          Avg Price: $${averagePrice}
+                      </h5>
+                      <!-- High and Low Prices Section -->
+                      <div class="price-info d-flex justify-content-between w-100 px-4">
+                          <p class="text-success mb-0">
+                              <strong>High:</strong> $${highPrice}
+                          </p>
+                          <p class="text-danger mb-0">
+                              <strong>Low:</strong> $${lowPrice}
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
     `;
 }
 

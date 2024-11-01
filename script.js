@@ -8,11 +8,11 @@ google.charts.load('current', {'packages': ['corechart']});
 
 async function fetchCryptoData() {
 
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
-    const data = await response.json();
+    // const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
+    // const data = await response.json();
 
-    // const response = localStorage.getItem('cryptoData')
-    // const data = JSON.parse(response)
+    const response = localStorage.getItem('cryptoData')
+    const data = JSON.parse(response)
 
     localStorage.setItem("cryptoData", JSON.stringify(data));
 
@@ -67,58 +67,73 @@ function displayCarousels(data){
         carousel.className = 'carousel-item';
 
         carousel.innerHTML = `
-            <div class="card shadow-sm mb-4">
-
-                <div class="card-header">
-                    <h5 class="card-title text-center">${name}</h5>
-                    
-                    <div class="card-text d-flex justify-content-between">
-                        <img src="${coin.image}" alt="${name}" class="rounded-circle border border-secondary" style="width: 40px; height: 40px; margin-right: 10px;">
-                        <span class="font-weight-bold">${coin.symbol.toUpperCase()}</span>
+            <div class="card shadow-sm mb-4" style="border-radius: 12px;">
+                <!-- Card Header -->
+                <div class="card-header bg- text-white text-center" style="border-radius: 12px 12px 0 0;">
+                    <h5 class="card-title mb-2">${name}</h5>
+                    <div class="card-text d-flex align-items-center justify-content-around">
+                        <img src="${coin.image}" alt="${name}" class="rounded-circle border border-light" style="width: 40px; height: 40px; margin-right: 10px;">
+                        <span class="font-weight-bold text-uppercase">${coin.symbol}</span>
                     </div>
                 </div>
 
-                <div class="card-body">
-
-                    <div class="bg-white d-flex justify-content-around">
-                        <div class="price">
-                            <strong>Price:</strong> $${current}
+                <!-- Card Body -->
+                <div class="card-body bg-light" style="border-radius: 0 0 12px 12px;">
+                    <!-- Price, Market Cap, and Change Section -->
+                    <div class="d-flex justify-content-around align-items-center py-2">
+                        <div class="price text-center">
+                            <strong>Price:</strong> <span class="text-primary">$${current}</span>
                         </div>
-                        <div class="market-cap">
-                            <strong>Market-Cap:</strong> $${coin.market_cap.toLocaleString()}
+                        <div class="market-cap text-center">
+                            <strong>Market Cap:</strong> <span class="text-secondary">$${coin.market_cap.toLocaleString()}</span>
                         </div>
-                        <div class="change">                
+                        <div class="change text-center">                
                             <span class="badge ${coin.price_change_percentage_24h >= 0 ? 'bg-success' : 'bg-danger'}">
                                 ${coin.price_change_percentage_24h.toFixed(2)}%
                             </span>
                         </div>
                     </div>
 
-                    <table class="table table-borderless table-hover mt-3 p-3 w-100" style="border-radius:10px">
-                        <tr>
-                            <td><strong> High :</strong> ${h24.toFixed(2)}</td> 
-                            <td><strong> Low :</strong> ${l24.toFixed(2)}</td>
-                        </tr>
-
-                        <tr>
-                            <td><strong>All Time High:</strong> ${ath.toFixed(2)}</td>
-                            <td><strong>All Time Low:</strong> ${atl.toFixed(2)}</td>
-                        </tr>
-
-                        <tr>
-                            <td><strong>Profit/Loss: </strong> ${coin.price_change_percentage_24h.toFixed(2)}%</td>
-                            <td><strong>Market Cap: </strong> ${coin.market_cap_change_24h.toLocaleString()}</td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2"></td>
-                        
-                        </tr>
-
+                    <!-- Detailed Table Section -->
+                    <table class="table table-borderless mt-3 w-100">
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>24h High:</strong> 
+                                    <span class="text-success">$${h24.toFixed(2)}</span>
+                                </td>
+                                <td class="text-center">
+                                    <strong>24h Low:</strong> 
+                                    <span class="text-danger">$${l24.toFixed(2)}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>All Time High:</strong> 
+                                    <span class="text-success">$${ath.toFixed(2)}</span>
+                                </td>
+                                <td class="text-center">
+                                    <strong>All Time Low:</strong> 
+                                    <span class="text-danger">$${atl.toFixed(2)}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="2">
+                                    <strong>Market Cap Change:</strong> 
+                                    <span class="text-secondary">$${coin.market_cap_change_24h.toLocaleString()}</span>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </tfoot>
                     </table>
-
                 </div>
-
             </div>
+
         `
         carouselBody.appendChild(carousel);
 
