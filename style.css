@@ -1,5 +1,6 @@
 body {
-    background-color: #f8f9fa;
+
+    background-color: #0f0f23;
 }
 
 .sm-fs-6 {
@@ -27,39 +28,12 @@ body {
     font-weight: bold;
 }
 
-.card-text {
-    font-size: 1.2em;
-}
-
 .card-footer {
     background-color: #fff;
     display: flex;
     justify-content: space-between;
 }
 
-.price, .market-cap, .change {
-    display: inline-block;
-    width: 30%;
-}
-
-.navbar-brand {
-    font-size: 1.8em;
-}
-
-.navbar-nav .nav-link {
-    font-size: 1.2em;
-}
-
-.navbar-toggler {
-    outline: none;
-}
-
-/* Collapse content styling */
-.collapse-content {
-    display: none;
-    transition: max-height 0.3s ease-in-out;
-    overflow: hidden;
-}
 
 .card-body.active .collapse-content {
     display: block;
@@ -72,6 +46,32 @@ body {
     transform: scale(1.03);
     box-shadow: 0 8px 16px black;
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+.price, .market-cap, .change {
+    display: inline-block;
+    width: 30%;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2em;
+    color: white;
+}
+
+.navbar-toggler {
+    outline: none;
+}
+
+/* Collapse content styling */
+.collapse-content {
+    display: none;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .search-bar {
@@ -101,14 +101,6 @@ footer {
     padding: 20px; /* Add some padding */
 }
 
-.card {
-    border: none; /* Remove card border */
-    border-radius: 10px; /* Rounded corners */
-}
-
-.card-title {
-    font-weight: bold;
-}
 
 #selectedCoinSearchDiv select,input[type="text"], input[type="date"] {
     border-radius: 5px; /* Rounded corners for inputs */
@@ -150,26 +142,29 @@ footer {
     transform: translateY(0);
 }
 
-h6, h5, h4, strong{
-    color: rgb(59, 30, 4);
+h5{
+    color: #00d1b2;
 }
 
+
+h6,h4{
+    color: rgb(0, 87, 128);
+}
+
+h4 img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
 button{
     background-color: rgb(218, 160, 109);
 }
 
 #selectedCoinSearchDiv .card-body{
-    background-color: rgb(245, 200, 142);
+    background-color: #0f0f23;
+    color: white;
 }
 
-.offcanvas .nav-link{
-    color: rgb(153, 85, 25);
-}
-
-html,body{
-  overflow-x: hidden;
-
-}
 #selectedCoinCharts .row{
     width: 100%;            
     overflow-x: scroll;        
@@ -206,9 +201,6 @@ html,body{
     padding: 0 5%;
     justify-content: space-between;
 }
-.carousel-item tr td{
-    /* text-align: left; */
-}
 
 .carousel-indicators{
     display: flex;
@@ -229,8 +221,8 @@ html,body{
 .carousel-indicators .active {
     width: 50px !important;
     height: 50px !important;
-    border: 3px solid black !important;
-
+    border: 3px solid rgb(51, 24, 0) !important;
+    box-shadow: 0 0 7px rgb(51, 24, 0);
     opacity: 1 !important;
 }
 .carousel-inner {

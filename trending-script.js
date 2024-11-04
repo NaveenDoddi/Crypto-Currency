@@ -14,8 +14,8 @@ fetch('https://api.coingecko.com/api/v3/search/trending')
         
         const coinImage = document.createElement('img');
         coinImage.src = coin.item.small;  
-        const coinName = document.createElement('p');
-        coinName.textContent = coin.item.name; 
+        const coinName = document.createElement('div');
+        coinName.textContent = coin.item.name;
 
         coinDiv.appendChild(coinImage);
         coinDiv.appendChild(coinName);
@@ -45,7 +45,7 @@ function displayCoinCategoryData(data) {
         <div class="card h-100 m-0">
           <div class="card-body text-center p-0">
               <!-- Card title is always visible -->
-              <h6 class="card-titl p-2 text-light rounded" style = "cursor: pointer; background-color:${data.data.market_cap_change_percentage_24h.aed >= 0 ? 'rgb(111, 78, 55)':'rgb(59, 30, 4)'}" data-toggle="collapse" data-target="#collapse${data.id}" aria-expanded="false" aria-controls="collapse${data.id}">
+              <h6 class="card-titl p-2 text-light rounded" style = "cursor: pointer; background-color:${data.data.market_cap_change_percentage_24h.aed >= 0 ? '#0f0f23':'#3a3a65'}" data-toggle="collapse" data-target="#collapse${data.id}" aria-expanded="false" aria-controls="collapse${data.id}">
                   <a href='#${data.name}' class="pe-auto text-decoration-none" style="color: white">
                       ${data.name}
                   </a>

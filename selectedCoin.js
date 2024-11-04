@@ -36,11 +36,11 @@ async function fetchCryptoCoinData(days,coin) {
 
     const response = await fetch('https://api.coingecko.com/api/v3/coins/'+coin.toLowerCase()+'/market_chart?vs_currency=usd&days='+days);
     const data = await response.json();
+    localStorage.setItem('selectedCoinData', JSON.stringify(data))
 
     // const response = localStorage.getItem('selectedCoinData')
     // const data = JSON.parse(response)
 
-    localStorage.setItem('selectedCoinData', JSON.stringify(data))
     
     var priceData = [
       ['Date', 'Price']
@@ -259,23 +259,22 @@ function displaySelectedCoinData(coin, days, highPrice, lowPrice, averagePrice, 
         <div class="">
           <div class="card shadow-sm border-0" style="border-radius: 10px;">
               <!-- Card Header with Title -->
-              <div class="card-header text-white text-center" style="border-radius: 10px 10px 0 0;">
+              <div class="card-header text-white text-center" style="border-radius: 10px 10px 0 0; background-color: #0f0f23">
                   <h5 class="mb-0">${coin} Prices (USD) in Last ${days} Days</h5>
               </div>
 
               <!-- Card Body with Price Information -->
               <div class="card-body bg-light">
-                  <div class="d-flex flex-column align-items-center">
-                      <!-- Average Price with Larger Font for Emphasis -->
-                      <h5 class="card-title font-weight-bold text-primary mb-3">
+                  <div class="d-flex flex-column align-items-center" style="color: rgb(0, 87, 128)">
+                      <p class="card-title font-weight-bold mb-3">
                           Avg Price: $${averagePrice}
-                      </h5>
-                      <!-- High and Low Prices Section -->
+                      </p>
+
                       <div class="price-info d-flex justify-content-between w-100 px-4">
-                          <p class="text-success mb-0">
+                          <p class="mb-0">
                               <strong>High:</strong> $${highPrice}
                           </p>
-                          <p class="text-danger mb-0">
+                          <p class="mb-0">
                               <strong>Low:</strong> $${lowPrice}
                           </p>
                       </div>

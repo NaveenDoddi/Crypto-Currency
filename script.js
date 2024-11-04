@@ -3,6 +3,7 @@ let COIN_LIMIT = 10; // Set the limit for the number of coins to display
 let currentDisplayCount = 10; // Starting number of coins displayed
 const increment = 10; // Number of cards to display each time the button is clicked
 let marketCaps = [['Name', 'MarketCap']];
+var allData = []
 
 google.charts.load('current', {'packages': ['corechart']});
 
@@ -10,13 +11,13 @@ async function fetchCryptoData() {
 
     // const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
     // const data = await response.json();
+    // localStorage.setItem("cryptoData", JSON.stringify(data));
 
     const response = localStorage.getItem('cryptoData')
     const data = JSON.parse(response)
 
-    localStorage.setItem("cryptoData", JSON.stringify(data));
-
     const sortedData = data.sort((a, b) => b.current_price - a.current_price);
+    allData = [...sortedData].slice(4, sortedData.length)
 
     displayData(sortedData.slice(4, 13));
 
@@ -25,7 +26,6 @@ async function fetchCryptoData() {
 
 }
 fetchCryptoData();
-
 
 function arrangeData(data){
     var result = [['Coin', 'Opening', 'High', 'Closing']]
@@ -54,10 +54,10 @@ function displayCarousels(data){
         indicator.innerHTML = `
             <img type="button" src="${coin.image}" data-bs-target="#carouselIndicators" data-bs-slide-to="${index}" class="indicators" aria-current="true" aria-label="Slide ${index}">
         `
-        carouselIndicators.append(indicator)
+        carouselIndicators.append(indicator);
 
         const name = coin.name;
-        const current = Number(coin.current_price.toFixed(2))
+        const current = Number(coin.current_price.toFixed(2));
         const h24 = Number(coin.high_24h.toFixed(2));
         const l24 = Number(coin.low_24h.toFixed(2));
         const ath = Number(coin.ath.toFixed(2));
@@ -69,7 +69,7 @@ function displayCarousels(data){
         carousel.innerHTML = `
             <div class="card shadow-sm mb-4" style="border-radius: 12px;">
                 <!-- Card Header -->
-                <div class="card-header bg- text-white text-center" style="border-radius: 12px 12px 0 0;">
+                <div class="card-header text-white text-center" style="border-radius: 12px 12px 0 0; background-color:#0f0f23;">
                     <h5 class="card-title mb-2">${name}</h5>
                     <div class="card-text d-flex align-items-center justify-content-around">
                         <img src="${coin.image}" alt="${name}" class="rounded-circle border border-light" style="width: 40px; height: 40px; margin-right: 10px;">
@@ -166,16 +166,16 @@ function displayData(data) {
         card.dataset.priceChange = coin.price_change_percentage_24h;
         
         card.innerHTML = `
-            <div class="card shadow-sm mb-4">
-                <div class="card-body" onclick="toggleDetails(this)" style="cursor: pointer;">
+            <div class="card shadow-sm mb-4" style="border-radius: 15px 15px 0 0">
+                <div class="card-body" onclick="toggleDetails(this)" style="cursor: pointer; background-color: #0f0f23; border-radius: 15px 15px 0 0">
                     <h5 class="card-title text-center">${name}</h5>
                     
                     <div class="card-text d-flex justify-content-between">
                         <img src="${coin.image}" alt="${name}" class="rounded-circle border border-secondary" style="width: 40px; height: 40px; margin-right: 10px;">
-                        <span class="font-weight-bold">${coin.symbol.toUpperCase()}</span>
+                        <span class="text-light">${coin.symbol.toUpperCase()}</span>
                     </div>
 
-                    <div class="collapse-content mt-3 p-3" style="border-radius:10px">
+                    <div class="collapse-content mt-3 p-3">
                         <p><strong>24h High:</strong> ${h24.toFixed(2)}</p>
                         <p><strong>ATH:</strong> ${ath.toFixed(2)}</p>
                         <p><strong>24h Low:</strong> ${l24.toFixed(2)}</p>
@@ -183,9 +183,7 @@ function displayData(data) {
                         <p><strong>24h Profit/Loss:</strong> ${coin.price_change_percentage_24h.toFixed(2)}%</p>
                         <p><strong>Market Cap Change 24h:</strong> ${coin.market_cap_change_24h.toLocaleString()}</p>
                     </div>
-                    <div class="text-center">
-                      <i class="fa-solid fa-caret-down text-primary fs-2" aria-hidden="true"></i>
-                    </div>
+                    
                 </div>
                 
                 <div class="card-footer bg-white d-flex justify-content-between align-items-center">
@@ -263,7 +261,6 @@ async function drawPriceChart(data){
     chart.draw(data, options);
 }
 
-
 // Search functionality
 const input = document.getElementById("searchBar"); 
 input.addEventListener("input", () => { 
@@ -331,7 +328,7 @@ function drawMarketChart() {
 // Show more function
 function showMore() {
     currentDisplayCount += increment;
-    displayData(allData.slice(0, currentDisplayCount)); // Update display to show more coins
+    displayData(allData); // Update display to show more coins
 }
 
 function toggleDetails(element) {

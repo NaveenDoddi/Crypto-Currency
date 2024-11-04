@@ -15,46 +15,48 @@
     
 </head>
 <body class="sm-fs-6">
-    
-    <nav class="navbar navbar-dark p-0" style="background-color: rgb(51, 24, 0);">
-        <div class="container p-1 mb-2 mt-2" style="background-color: rgb(111, 78, 55);">
-            <a class="navbar-brand d-flex align-items-center" href="#"> 
+
+    <nav class="navbar navbar-dark navbar-expand-md">
+        <div class="container-fluid p-1 mb-2 mt-2" style="background-color: #0f0f23">
+
+            <a class="navbar-brand " href="#"> 
                 <img src="crypto logo.jpeg" alt="Logo" style="width: 40px; height: 40px;" class="mr-2"> <!-- Logo Image -->
-                <span class="font-weight-bold"> &nbsp; <strong> Crypto Dashboard </strong></span>
+                <span class="font-weight-bold "> &nbsp; <strong > Crypto </strong></span>
             </a>
-            <!-- Offcanvas Toggle Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse" id="navbarToggler">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="#charts">Charts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="#crypto-data-div">Crypto-coins</a>
+                    </li>
+                </ul>
+
+                <form class="d-flex">
+                    <input class="form-control me-2" style="color: rgb(0, 87, 128);" type="search" placeholder="Search for a COIN" aria-label="Search">
+                    <button class="btn btn-sm btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
         </div>
     </nav>
-    
-    <!-- Offcanvas Component -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" data-bs-scroll="true">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Crypto Dashboard</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="#charts">Charts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="#crypto-data-div">Crypto-coins</a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <!-- coins trending containers -->
     <div class="trending-container mt-3 p-1">
 
         <div id="coin-container" class="rounded shadow-sm p-3">
-            <h4 class="text-left text-success mb-1">Trending <img src="trending_icon.jpeg" alt="" style="width: 40px; height: 40px;" class=""></h4>
+            <h4 class="text-left mb-1" style="color: rbg(54, 117, 136) !important;">
+                Trending 
+                <img src="trending_icon.jpeg" alt="">
+            </h4>
 
             <div id="coin-list" class="scrolling"></div>
         </div>
@@ -68,10 +70,10 @@
         
         <!-- Date Picker Input -->
         <div class="mb-3 row d-flex justify-content-center">
-            <div class="col-sm-12 col-md-6">
-                <div class="card shadow-sm rounded">
-                    <div class="card-body text-center">
-                        <h5 class="card-title" style="color: rgb(59, 30, 4);">Crypto Coin Selection</h5>
+            <div class="col-sm-12 col-md-6" >
+                <div class="card shadow-sm rounded" >
+                    <div class="card-body text-center" style="border-radius: 10px;">
+                        <h5 class="card-title">Crypto Coin Selection</h5>
                         
                         <!-- <input type="text" id="cryptoInput" class="form-control mb-3" placeholder="Enter Cryptocurrency (e.g., bitcoin)" value="bitcoin" required> -->
                         <div class="input-group mb-3">
@@ -92,7 +94,7 @@
                         
                         <input type="date" id="datePicker" class="form-control mb-3" required>
                         
-                        <button class="btn" style="background-color: rgb(109, 84, 59);" onclick="selectedCoinData()">Show</button>
+                        <button class="btn"  style="background-color: rgb(0, 87, 128);" onclick="selectedCoinData()">Show</button>
                     </div>
                 </div>
             </div>
@@ -121,12 +123,15 @@
 
 
     <!-- Category of coins container -->
-    <div class="rounded shadow-sm p-3 mt-5" id="CategoriesContainer">
-        <h4 class="text-left mb-4 fw-bolder" >Coin Categories <img src="shakehands.png" alt="" style="width: 50px; height: 40px;" class="rounded-circle"></h4>
+    <div class="rounded shadow-sm p-3 mt-5 pb-5" id="CategoriesContainer">
+        <h4 class="text-left mb-4 fw-bolder">
+            Coin Categories 
+            <img src="shakehands.png" alt=""></h4>
 
         <div id="coin-details-container" class="row justify-content-center"></div>
     </div>
 
+    <!-- carousels -->
     <div id="carouselIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
         
         <div class="carousel-indicators" id="carousel-indicators">
@@ -148,9 +153,10 @@
         </button>
     </div>
 
-    <div class="mt-4">
+    <!-- searching and filtering -->
+    <div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-sm-12 col-md-6">
                 <input type="text" class="form-control search-bar" id="searchBar" placeholder="Search for a cryptocurrency...">
             </div>
@@ -178,16 +184,21 @@
             </div>
         </div>
 
-        <div id="crypto-data-div">
-            <h4 class="text-center">Crypto Currency Coins <img src="inside-crypto-cryptocurrency.png" alt="" style="width: 50px; height: 50px;" class="mr-2 rounded-circle"></h4>
-            <div class="row" id="crypto-data">
-                <!-- Data cards will be inserted here -->
-            </div>
-            <div class="d-flex justify-content-end">
-                <button id="showMoreBtn" onclick="showMore()" class="btn btn-primary mt-3">Show More</button> <!-- Show More Button -->
-            </div>
-        </div>
+    </div>
 
+    <!-- displaying coins -->
+
+    <div class="mt-4 p-3" id="crypto-data-div">
+        <h4>
+            Crypto Currency Coins 
+            <img src="inside-crypto-cryptocurrency.png" alt="">
+        </h4>
+        <div class="row" id="crypto-data">
+            <!-- Data cards will be inserted here -->
+        </div>
+        <div class="d-flex justify-content-end">
+            <button id="showMoreBtn" onclick="showMore()" class="btn btn-primary mt-3">Show More</button> <!-- Show More Button -->
+        </div>
     </div>
     
 </body>
@@ -203,6 +214,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 
 </html>
