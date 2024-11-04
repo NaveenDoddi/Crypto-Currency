@@ -167,7 +167,7 @@ function displayData(data) {
         
         card.innerHTML = `
             <div class="card shadow-sm mb-4" style="border-radius: 15px 15px 0 0">
-                <div class="card-body" onclick="toggleDetails(this)" style="cursor: pointer; background-color: #0f0f23; border-radius: 15px 15px 0 0">
+                <div class="card-body" onclick="toggleDetails(this)" onmouseenter="toggleDetails(this)" style="cursor: pointer; background-color: #0f0f23; border-radius: 15px 15px 0 0">
                     <h5 class="card-title text-center">${name}</h5>
                     
                     <div class="card-text d-flex justify-content-between">
@@ -175,7 +175,7 @@ function displayData(data) {
                         <span class="text-light">${coin.symbol.toUpperCase()}</span>
                     </div>
 
-                    <div class="collapse-content mt-3 p-3">
+                    <div class="collapse-content mt-3 p-3" style="color: rgb(0, 87, 128);">
                         <p><strong>24h High:</strong> ${h24.toFixed(2)}</p>
                         <p><strong>ATH:</strong> ${ath.toFixed(2)}</p>
                         <p><strong>24h Low:</strong> ${l24.toFixed(2)}</p>
@@ -186,7 +186,7 @@ function displayData(data) {
                     
                 </div>
                 
-                <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                <div class="card-footer bg-white d-flex justify-content-between align-items-center"style="color: rgb(0, 87, 128);">
                     <div class="price">
                         <strong>Price:</strong> $${current}
                     </div>

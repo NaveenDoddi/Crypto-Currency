@@ -9,7 +9,7 @@ body {
 
 @media (max-width: 576px) {
     .sm-fs-6 {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
     }
 }
 
@@ -80,15 +80,6 @@ body {
     max-width: 400px;
 }
 
-footer {
-    color: #510707;
-    padding: 30px;
-    text-align: center;
-    width: 100%;
-    bottom: 0;
-    font-weight: 800;
-}
-
 .loading {
     font-size: 18px;
     color: #f7931a;
@@ -119,6 +110,7 @@ footer {
     border-color: rgba(0, 123, 255, 0.5);
 }
 
+/* show more btn start  */
 #showMoreBtn {
     background-color: #4CAF50;
     color: white; 
@@ -141,6 +133,7 @@ footer {
     background-color: #2d7330;
     transform: translateY(0);
 }
+/* show more btn ends  */
 
 h5{
     color: #00d1b2;
@@ -156,9 +149,25 @@ h4 img{
     width: 40px;
     border-radius: 50%;
 }
-button{
-    background-color: rgb(218, 160, 109);
+/* discribing coins starts*/
+
+.discribing h2{
+    color: #0f0f23;;
 }
+.features {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+.feature {
+  max-width: 250px;
+}
+
+.feature p {
+  color: #a6a6d2;
+  line-height: 1.5;
+}
+/* discribing coins ends*/
 
 #selectedCoinSearchDiv .card-body{
     background-color: #0f0f23;
@@ -221,8 +230,8 @@ button{
 .carousel-indicators .active {
     width: 50px !important;
     height: 50px !important;
-    border: 3px solid rgb(51, 24, 0) !important;
-    box-shadow: 0 0 7px rgb(51, 24, 0);
+    border: 3px solid #0f0f23 !important;
+    box-shadow: 0 0 7px #0f0f23;
     opacity: 1 !important;
 }
 .carousel-inner {
@@ -230,3 +239,13 @@ button{
 }
 
 /* carausel ends here */
+
+
+footer {
+    color: #0f0f23;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    font-weight: 800;
+}
