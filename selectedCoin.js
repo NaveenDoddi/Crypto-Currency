@@ -1,6 +1,15 @@
 
 google.charts.load('current', {'packages':['corechart']});
 
+function defaultDatePicker(){
+  const today = new Date();
+      
+  const yesterday = new Date(today.getTime() -(10 * 86400000));
+  const formattedDate = yesterday.toISOString().split('T')[0];
+
+  document.getElementById('datePicker').value = formattedDate;
+};
+
 // Function to calculate days between selected date and today
 function selectedCoinData() {
     const datePicker = document.getElementById('datePicker').value;
@@ -286,14 +295,6 @@ function displaySelectedCoinData(coin, days, highPrice, lowPrice, averagePrice, 
     `;
 }
 
-function defaultDatePicker(){
-  const today = new Date();
-      
-  const yesterday = new Date(today.getTime() -(3 * 86400000));
-  const formattedDate = yesterday.toISOString().split('T')[0];
-
-  document.getElementById('datePicker').value = formattedDate;
-};
 
 defaultDatePicker();
 selectedCoinData(); 
