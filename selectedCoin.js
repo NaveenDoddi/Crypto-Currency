@@ -191,7 +191,7 @@ function drawCandleSticks(data) {
     title: 'Prices',
     width: '100%',
     height: 400,
-    // chartArea: { left: '10%', width: '80%', height: '70%' },
+    chartArea: { left: '10%', width: '90%' },
 
     titleTextStyle: { fontSize: 18, bold: true },
     legend: { position: 'top', alignment: 'center' },
@@ -226,6 +226,7 @@ function drawPriceChart1(priceData) {
     titleTextStyle: { fontSize: 18, bold: true },
     width: '100%',  // Responsive layout
     height: 400,
+    chartArea: { left: '10%', width: '90%', height: '70%' },  // Optimize layout
     bar: { groupWidth: '75%' },  // Balanced bar width for clarity
     legend: { position: 'top', alignment: 'center', textStyle: { fontSize: 12 } },
     hAxis: { 
@@ -240,7 +241,6 @@ function drawPriceChart1(priceData) {
         textStyle: { fontSize: 12 },
         gridlines: { color: '#e0e0e0' }
     },
-    chartArea: { left: '10%', width: '80%', height: '70%' },  // Optimize layout
     colors: ['#4285F4'],  // Use Google’s brand color for familiarity
     backgroundColor: { fill: '#f9f9f9' },  // Light background for readability
     tooltip: { isHtml: true },  // Enhanced tooltip display

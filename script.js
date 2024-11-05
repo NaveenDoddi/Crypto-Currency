@@ -223,9 +223,7 @@ function displayData(data) {
     // display charts
     let chartData = arrangeData(data) 
     google.charts.setOnLoadCallback(() => drawPriceChart(chartData));
-    // setTimeout(google.charts.setOnLoadCallback(drawPriceChart(chartData)), 1000);
-    // google.charts.setOnLoadCallback(drawMarketChart);
-
+    
 }
 
 async function drawPriceChart(data){
