@@ -260,13 +260,24 @@ async function drawPriceChart(data){
 }
 
 // Search functionality
+function navSearch(e){
+    e.preventDefault()
+    
+}
+
+document.getElementById("navSearchBtn").addEventListener("click", function(event){
+    event.preventDefault();
+    let searchValue = document.getElementById('navSearchBar').value.toLowerCase();
+    const filteredData = allData.filter(coin => coin.name.toLowerCase().includes(searchValue));
+    displayData(filteredData); // Update UI and charts
+    document.getElementById("charts").scrollIntoView({ behavior: "smooth" });
+});
+
 const input = document.getElementById("searchBar"); 
 input.addEventListener("input", () => { 
     const searchValue = input.value.toLowerCase();
     const filteredData = allData.filter(coin => coin.name.toLowerCase().includes(searchValue));
-    // chartData = arrangeData(filteredData)
     
-    // displayData(filteredData.slice(0, COIN_LIMIT)); // Update UI and charts
     displayData(filteredData); // Update UI and charts
 });
 
