@@ -1,6 +1,8 @@
 fetch('https://api.coingecko.com/api/v3/search/trending')
 .then(response => response.json())
 .then(data => {
+    
+    // localStorage.setItem('trending', JSON.stringify(data))
   
     // let data = localStorage.getItem('trending')
     // data = JSON.parse(data)

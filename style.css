@@ -155,11 +155,11 @@ h4 img{
     background-image: url('https://cdn.dribbble.com/users/125060/screenshots/17415848/media/a457feac6e9484d8030a069cda75ddce.png?resize=1200x900&vertical=center'); 
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top;
+    background-position: center;
     background-attachment: fixed;
     border: 1px solid #ccc;
 
-    height:70vh;
+    height:60vh;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
@@ -172,7 +172,7 @@ h4 img{
 
 .discribing h2{
     color: #0f0f23;
-    width:50%
+    font-weight: bold;
 }
 
 .discribing h4{
@@ -185,6 +185,7 @@ h4 img{
 }
 .feature {
   max-width: 300px;
+  max-height: 30hv;
 }
 
 .feature p {
