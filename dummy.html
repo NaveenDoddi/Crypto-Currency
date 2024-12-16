@@ -6,193 +6,53 @@
   <title>Two Circles with Rotating Divs</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f4f4f4;
+      
     }
 
-    .outer-circle-container, .inner-circle-container {
-      position: absolute;
-      border-radius: 50%;
-      animation: rotate-circle 10s linear infinite;
-    }
 
-    .outer-circle-container {
-      width: 400px;
-      height: 400px;
-      /* border: 2px solid black; */
-    }
-
-    .inner-circle-container {
-      width: 260px;
-      height: 260px;
-      /* border: 2px solid black; */
-    }
-
-    .square {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background-color: transparent;
-      border: 2px solid black;
-      border-radius: 5px;
-    }
-
-    @keyframes rotate-circle {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Outer Circle - 9 squares */
-    .outer-circle-container .square:nth-child(1) {
-      top: 0;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .outer-circle-container .square:nth-child(2) {
-      top: 20%;
-      left: 85%;
-      transform: translate(-50%, -50%);
-    }
-    .outer-circle-container .square:nth-child(3) {
-      top: 50%;
-      left: 100%;
-      transform: translate(-50%, -50%);
-    }
-    .outer-circle-container .square:nth-child(4) {
-      bottom: 20%;
-      left: 85%;
-      transform: translate(-50%, 50%);
-    }
-    .outer-circle-container .square:nth-child(5) {
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 50%);
-    }
-    .outer-circle-container .square:nth-child(6) {
-      bottom: 20%;
-      left: 15%;
-      transform: translate(-50%, 50%);
-    }
-    .outer-circle-container .square:nth-child(7) {
-      top: 50%;
-      left: 0;
-      transform: translate(-50%, -50%);
-    }
-    .outer-circle-container .square:nth-child(8) {
-      top: 20%;
-      left: 15%;
-      transform: translate(-50%, -50%);
-    }
-    .outer-circle-container .square:nth-child(9) {
-      top: 0;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(40deg);
-    }
-
-    /* Inner Circle - 7 squares */
-    .inner-circle-container .square:nth-child(1) {
-      top: 0;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .inner-circle-container .square:nth-child(2) {
-      top: 20%;
-      left: 85%;
-      transform: translate(-50%, -50%);
-    }
-    .inner-circle-container .square:nth-child(3) {
-      top: 50%;
-      left: 100%;
-      transform: translate(-50%, -50%);
-    }
-    .inner-circle-container .square:nth-child(4) {
-      bottom: 20%;
-      left: 85%;
-      transform: translate(-50%, 50%);
-    }
-    .inner-circle-container .square:nth-child(5) {
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 50%);
-    }
-    .inner-circle-container .square:nth-child(6) {
-      bottom: 20%;
-      left: 15%;
-      transform: translate(-50%, 50%);
-    }
-    .inner-circle-container .square:nth-child(7) {
-      top: 20%;
-      left: 15%;
-      transform: translate(-50%, -50%);
-    }
   </style>
 </head>
 <body>
-  <!-- Outer Circle Container with 9 squares -->
+  <!-- Outer Circle Container with 8 squares -->
   <div class="outer-circle-container">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
+  
   </div>
 
-  <!-- Inner Circle Container with 7 squares -->
+  <!-- Inner Circle Container with 6 squares evenly spaced -->
   <div class="inner-circle-container">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
+    
   </div>
 </body>
 
 <script>
 
-    // let data = localStorage.getItem('trending')
-    // let data1 = JSON.parse(data)
+    let data = localStorage.getItem('trending')
+    let data1 = JSON.parse(data)
 
-    // const coins = data1.coins;
-    // console.log(coins.length)
+    const coins = data1.coins;
 
-    // const outerCirle = document.getElementsByClassName('outer-circle-container')[0];
-    // const innerCircle = document.getElementsByClassName('inner-circle-container')[0];
+    const outerCirle = document.getElementsByClassName('outer-circle-container')[0];
+    const innerCircle = document.getElementsByClassName('inner-circle-container')[0];
     
-    // for(let coin = 0; coin <= 16; coin++) {
-    //     const coinDiv = document.createElement('div');
-    //     coinDiv.classList.add('square');
+    for(let coin = 0; coin < 14; coin++) {
+        const coinDiv = document.createElement('div');
+        coinDiv.classList.add('square');
         
-    //     const coinImage = document.createElement('img');
-    //     coinImage.src = coins[coin].item.small;  
-    //     const coinName = document.createElement('div');
-    //     coinName.textContent = coins[coin].item.name;
+        const coinImage = document.createElement('img');
+        coinImage.src = coins[coin].item.small;  
+        const coinName = document.createElement('div');
+        coinName.textContent = coins[coin].item.name;
 
-    //     coinDiv.appendChild(coinImage);
-    //     // coinDiv.appendChild(coinName);
+        coinDiv.appendChild(coinImage);
+        // coinDiv.appendChild(coinName);
 
-    //     if(coin < 8){
-    //       innerCircle.appendChild(coinDiv);
+        if(coin < 6){
+          innerCircle.appendChild(coinDiv);
           
-    //     }else if(coin >= 8){
-    //       outerCirle.appendChild(coinDiv);
+        }else if(coin >= 6){
+          outerCirle.appendChild(coinDiv);
           
-    //     }
-        
-        
-    // };
+        }
+    };
 </script>
 </html>

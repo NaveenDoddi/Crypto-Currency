@@ -1,11 +1,11 @@
-fetch('https://api.coingecko.com/api/v3/search/trending')
-.then(response => response.json())
-.then(data => {
+// fetch('https://api.coingecko.com/api/v3/search/trending')
+// .then(response => response.json())
+// .then(data => {
     
     // localStorage.setItem('trending', JSON.stringify(data))
   
-    // let data = localStorage.getItem('trending')
-    // data = JSON.parse(data)
+    let data = localStorage.getItem('trending')
+    data = JSON.parse(data)
 
     const coins = data.coins;
     const coinList = document.getElementById('coin-list');
@@ -25,6 +25,34 @@ fetch('https://api.coingecko.com/api/v3/search/trending')
         coinList.appendChild(coinDiv);
     });
 
+    
+    // let data = localStorage.getItem('trending')
+    // let data1 = JSON.parse(data)
+
+    const outerCirle = document.getElementsByClassName('outer-circle-container')[0];
+    const innerCircle = document.getElementsByClassName('inner-circle-container')[0];
+    
+    for(let coin = 0; coin < 14; coin++) {
+        const coinDiv = document.createElement('div');
+        coinDiv.classList.add('square');
+        
+        const coinImage = document.createElement('img');
+        coinImage.src = coins[coin].item.small;  
+        const coinName = document.createElement('div');
+        coinName.textContent = coins[coin].item.name;
+
+        coinDiv.appendChild(coinImage);
+        // coinDiv.appendChild(coinName);
+
+        if(coin < 6){
+          innerCircle.appendChild(coinDiv);
+          
+        }else if(coin >= 6){
+          outerCirle.appendChild(coinDiv);
+          
+        }
+    };
+
     const categories = data.categories
     const categoryContainer = document.getElementById('category-container');
 
@@ -35,7 +63,7 @@ fetch('https://api.coingecko.com/api/v3/search/trending')
         })
 
     }
-})
+// })
 
 function displayCoinCategoryData(data) {
   const coinDetailsContainer = document.getElementById('coin-details-container');

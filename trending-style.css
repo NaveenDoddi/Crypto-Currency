@@ -1,12 +1,15 @@
 #coin-container {
     overflow: hidden;
     white-space: nowrap;
-    width: 100%;
-    height: 180px;
+    width: 100%;    
     border: 1px solid #ccc;
     background-color: #f8f9fa;
     position: relative;
     
+}
+
+#coin-list{
+    overflow:hidden;
 }
 
 /* Scrolling animation */
@@ -75,3 +78,153 @@
     font-size: 16px;
     /* color: #6c757d; */
 }
+
+
+/* starting for ratatory bars */
+
+.rotary-coins-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    background-color: #f4f4f4;
+
+    background-image: url('');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; */
+}
+
+.outer-circle-container {
+    position: absolute;
+    border-radius: 50%;
+    animation: rotate-circle 10s linear infinite;
+  }
+  .inner-circle-container{
+    position: absolute;
+    border-radius: 50%;
+    animation: rotate-circle 15s linear infinite;
+
+  }
+
+  .outer-circle-container {
+    width: 430px;
+    height: 430px;
+    /* border: 2px solid black; */
+  }
+
+  .inner-circle-container {
+    width: 250px;
+    height: 230px;
+    /* border: 2px solid black; */
+  }
+
+  .square {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    /* border: 2px solid black; */
+    /* border-radius: 5px; */
+  }
+  .square img{
+    border-radius: 50%;
+    border: 2px solid black;
+
+  }
+
+  @keyframes rotate-circle {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Outer Circle - 9 squares */
+  .outer-circle-container .square:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .outer-circle-container .square:nth-child(2) {
+    top: 20%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+  }
+  .outer-circle-container .square:nth-child(3) {
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+  }
+  .outer-circle-container .square:nth-child(4) {
+    bottom: 20%;
+    left: 85%;
+    transform: translate(-50%, 50%);
+  }
+  .outer-circle-container .square:nth-child(5) {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+  .outer-circle-container .square:nth-child(6) {
+    bottom: 20%;
+    left: 15%;
+    transform: translate(-50%, 50%);
+  }
+  .outer-circle-container .square:nth-child(7) {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+  .outer-circle-container .square:nth-child(8) {
+    top: 20%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+  }
+  .outer-circle-container .square:nth-child(9) {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(40deg);
+  }
+
+  /* Inner Circle - 7 squares evenly spaced */
+  .inner-circle-container .square:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .inner-circle-container .square:nth-child(2) {
+    top: 25%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+  }
+  .inner-circle-container .square:nth-child(3) {
+    top: 75%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+  }
+  .inner-circle-container .square:nth-child(4) {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .inner-circle-container .square:nth-child(5) {
+    top: 75%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+  }
+  .inner-circle-container .square:nth-child(6) {
+    top: 25%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+  }
+  .inner-circle-container .square:nth-child(7) {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+/* end for rotatary bars */
