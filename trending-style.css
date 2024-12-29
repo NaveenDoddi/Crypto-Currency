@@ -1,230 +1,275 @@
 #coin-container {
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100%;    
-    border: 1px solid #ccc;
-    background-color: #f8f9fa;
-    position: relative;
-    
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  position: relative;
+
 }
 
-#coin-list{
-    overflow:hidden;
+#coin-list {
+  overflow: hidden;
 }
 
 /* Scrolling animation */
 @keyframes scroll {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-30%);
-    }
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-30%);
+  }
 }
 
 /* Apply animation to the coin list */
 .scrolling {
-    display: inline-flex;
-    animation: scroll 10s linear infinite;
+  display: inline-flex;
+  animation: scroll 10s linear infinite;
 }
 
 /* Style for individual coin divs */
 .coin {
-    display: inline-block;
-    text-align: center;
-    margin: 0 10px;
+  display: inline-block;
+  text-align: center;
+  margin: 0 10px;
 }
 
 /* Rounded image */
 .coin img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid #dee2e6;
-    padding: 3px;
-    background-color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #dee2e6;
+  padding: 3px;
+  background-color: #fff;
 }
 
 /* Coin name style */
 .coin p {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #343a40;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #343a40;
 }
 
 
 /* Style for the coin detail card */
 .coin-detail-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f8f9fa;
-    margin-bottom: 20px;
-    text-align: center;
-    transition: background-color 0.3s;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: background-color 0.3s;
 }
 
 .coin-detail-card:hover {
-    background-color: #dee2e6;
+  background-color: #dee2e6;
 }
 
 .coin-detail-card h5 {
-    font-size: 24px;
-    color: #343a40;
+  font-size: 24px;
+  color: #343a40;
 }
 
 .coin-detail-card p {
-    font-size: 16px;
-    /* color: #6c757d; */
+  font-size: 16px;
+  /* color: #6c757d; */
 }
 
 
 /* starting for ratatory bars */
 
-.rotary-coins-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-    background-color: #f4f4f4;
+.rotary-coins-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
 
-    background-image: url('');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    /* background-attachment: fixed; */
+.outer-circle-container,
+.inner-circle-container {
+  position: absolute;
+  border-radius: 50%;
+  animation: rotate-circle 10s linear infinite;
 }
 
 .outer-circle-container {
-    position: absolute;
-    border-radius: 50%;
-    animation: rotate-circle 10s linear infinite;
-  }
-  .inner-circle-container{
-    position: absolute;
-    border-radius: 50%;
-    animation: rotate-circle 15s linear infinite;
+  width: 40vw;
+  height: 40vw;
+}
 
+.inner-circle-container {
+  width: 20vw;
+  height: 20vw;
+}
+
+.square {
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.square img {
+  border-radius: 50%;
+  border: 2px solid black;
+
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(0deg);
   }
 
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
   .outer-circle-container {
-    width: 430px;
-    height: 430px;
-    /* border: 2px solid black; */
+     width: 60vw;
+     height: 60vw;
   }
-
   .inner-circle-container {
-    width: 250px;
-    height: 230px;
-    /* border: 2px solid black; */
+     width: 30vw;
+     height: 30vw;
   }
-
   .square {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
-    /* border: 2px solid black; */
-    /* border-radius: 5px; */
+     width: 7vw;
+     height: 7vw;
   }
-  .square img{
-    border-radius: 50%;
-    border: 2px solid black;
+}
 
+@media (max-width: 480px) {
+  .outer-circle-container {
+     width: 80vw;
+     height: 80vw;
   }
+  .inner-circle-container {
+     width: 40vw;
+     height: 40vw;
+  }
+  .square {
+     width: 10vw;
+     height: 10vw;
+  }
+}
 
-  @keyframes rotate-circle {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 
-  /* Outer Circle - 9 squares */
-  .outer-circle-container .square:nth-child(1) {
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .outer-circle-container .square:nth-child(2) {
-    top: 20%;
-    left: 85%;
-    transform: translate(-50%, -50%);
-  }
-  .outer-circle-container .square:nth-child(3) {
-    top: 50%;
-    left: 100%;
-    transform: translate(-50%, -50%);
-  }
-  .outer-circle-container .square:nth-child(4) {
-    bottom: 20%;
-    left: 85%;
-    transform: translate(-50%, 50%);
-  }
-  .outer-circle-container .square:nth-child(5) {
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
-  }
-  .outer-circle-container .square:nth-child(6) {
-    bottom: 20%;
-    left: 15%;
-    transform: translate(-50%, 50%);
-  }
-  .outer-circle-container .square:nth-child(7) {
-    top: 50%;
-    left: 0;
-    transform: translate(-50%, -50%);
-  }
-  .outer-circle-container .square:nth-child(8) {
-    top: 20%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-  }
-  .outer-circle-container .square:nth-child(9) {
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(40deg);
-  }
+/* Outer Circle - 9 squares */
+.outer-circle-container .square:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  /* Inner Circle - 7 squares evenly spaced */
-  .inner-circle-container .square:nth-child(1) {
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .inner-circle-container .square:nth-child(2) {
-    top: 25%;
-    left: 85%;
-    transform: translate(-50%, -50%);
-  }
-  .inner-circle-container .square:nth-child(3) {
-    top: 75%;
-    left: 85%;
-    transform: translate(-50%, -50%);
-  }
-  .inner-circle-container .square:nth-child(4) {
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .inner-circle-container .square:nth-child(5) {
-    top: 75%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-  }
-  .inner-circle-container .square:nth-child(6) {
-    top: 25%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-  }
-  .inner-circle-container .square:nth-child(7) {
-    top: 50%;
-    left: 0;
-    transform: translate(-50%, -50%);
-  }
+.outer-circle-container .square:nth-child(2) {
+  top: 20%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+
+.outer-circle-container .square:nth-child(3) {
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.outer-circle-container .square:nth-child(4) {
+  bottom: 20%;
+  left: 85%;
+  transform: translate(-50%, 50%);
+}
+
+.outer-circle-container .square:nth-child(5) {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.outer-circle-container .square:nth-child(6) {
+  bottom: 20%;
+  left: 15%;
+  transform: translate(-50%, 50%);
+}
+
+.outer-circle-container .square:nth-child(7) {
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.outer-circle-container .square:nth-child(8) {
+  top: 20%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.outer-circle-container .square:nth-child(9) {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(40deg);
+}
+
+/* Inner Circle - 7 squares evenly spaced */
+.inner-circle-container .square:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-circle-container .square:nth-child(2) {
+  top: 25%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-circle-container .square:nth-child(3) {
+  top: 75%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-circle-container .square:nth-child(4) {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-circle-container .square:nth-child(5) {
+  top: 75%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-circle-container .square:nth-child(6) {
+  top: 25%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-circle-container .square:nth-child(7) {
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
 
 /* end for rotatary bars */

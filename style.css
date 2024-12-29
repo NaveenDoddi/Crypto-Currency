@@ -150,43 +150,56 @@ h4 img{
     border-radius: 50%;
 }
 /* discribing coins starts*/
-
-.discribing{
-    background-image: url('https://cdn.dribbble.com/users/125060/screenshots/17415848/media/a457feac6e9484d8030a069cda75ddce.png?resize=1200x900&vertical=center'); 
+.discribing {
+    background-image: url('https://cdn.dribbble.com/users/125060/screenshots/17415848/media/a457feac6e9484d8030a069cda75ddce.png?resize=1200x900&vertical=center');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     border: 1px solid #ccc;
 
-    height:60vh;
-    display:flex;
+    height: auto; /* Adjust height automatically based on content */
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top:5%;
-    padding:3%;
-    margin:4%;
-
-
+    padding: 5%;
+    margin: 4%;
+    box-sizing: border-box;
 }
 
-.discribing h2{
+.discribing h2 {
     color: #0f0f23;
     font-weight: bold;
+    text-align: center; /* Center-align heading for better mobile aesthetics */
 }
 
-.discribing h4{
+.discribing h4 {
     color: rgb(255, 230, 2);
 }
+
 .features {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap; /* Allows features to wrap to the next row on smaller screens */
+    gap: 1rem; /* Adjusted spacing between features */
     margin-top: 1rem;
+    justify-content: center; /* Center content on smaller screens */
 }
+
 .feature {
-  max-width: 300px;
-  max-height: 30hv;
+    max-width: 100%; /* Ensure the feature cards adjust to screen width */
+    flex: 1 1 calc(100% - 2rem); /* Full width with proper spacing on mobile */
+    text-align: center; /* Align text for better readability on mobile */
+    padding: 1rem;
+    box-sizing: border-box;
 }
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) {
+    .feature {
+        flex: 1 1 calc(33.33% - 2rem); /* Three cards per row on medium screens */
+    }
+}
+
 
 .feature p {
   /* color: #a6a6d2; */
