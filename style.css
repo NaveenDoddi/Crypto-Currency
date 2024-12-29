@@ -1,8 +1,12 @@
 body {
-
     background-color: #0f0f23;
+    margin: 0 !important;
+    overflow: hidden;
+    padding-top: 66px;
 }
-
+*{
+    box-sizing: border-box;
+}
 .sm-fs-6 {
     font-size: 0.875rem;
 }
@@ -156,21 +160,19 @@ h4 img{
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    border: 1px solid #ccc;
 
     height: auto; /* Adjust height automatically based on content */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 5%;
-    margin: 4%;
     box-sizing: border-box;
 }
 
 .discribing h2 {
     color: #0f0f23;
     font-weight: bold;
-    text-align: center; /* Center-align heading for better mobile aesthetics */
+    text-align: center;
 }
 
 .discribing h4 {
@@ -179,16 +181,16 @@ h4 img{
 
 .features {
     display: flex;
-    flex-wrap: wrap; /* Allows features to wrap to the next row on smaller screens */
-    gap: 1rem; /* Adjusted spacing between features */
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-top: 1rem;
-    justify-content: center; /* Center content on smaller screens */
+    justify-content: center;
 }
 
 .feature {
-    max-width: 100%; /* Ensure the feature cards adjust to screen width */
-    flex: 1 1 calc(100% - 2rem); /* Full width with proper spacing on mobile */
-    text-align: center; /* Align text for better readability on mobile */
+    max-width: 100%; 
+    flex: 1 1 calc(100% - 2rem); 
+    text-align: center;
     padding: 1rem;
     box-sizing: border-box;
 }

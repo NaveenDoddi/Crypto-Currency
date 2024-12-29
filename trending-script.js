@@ -8,22 +8,22 @@
     data = JSON.parse(data)
 
     const coins = data.coins;
-    const coinList = document.getElementById('coin-list');
+    // const coinList = document.getElementById('coin-list');
     
-    coins.forEach(coin => {
-        const coinDiv = document.createElement('div');
-        coinDiv.classList.add('coin');
+    // coins.forEach(coin => {
+    //     const coinDiv = document.createElement('div');
+    //     coinDiv.classList.add('coin');
         
-        const coinImage = document.createElement('img');
-        coinImage.src = coin.item.small;  
-        const coinName = document.createElement('div');
-        coinName.textContent = coin.item.name;
+    //     const coinImage = document.createElement('img');
+    //     coinImage.src = coin.item.small;  
+    //     const coinName = document.createElement('div');
+    //     coinName.textContent = coin.item.name;
 
-        coinDiv.appendChild(coinImage);
-        coinDiv.appendChild(coinName);
+    //     coinDiv.appendChild(coinImage);
+    //     coinDiv.appendChild(coinName);
         
-        coinList.appendChild(coinDiv);
-    });
+    //     coinList.appendChild(coinDiv);
+    // });
 
     
     // let data = localStorage.getItem('trending')
