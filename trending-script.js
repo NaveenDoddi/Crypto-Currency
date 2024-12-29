@@ -1,33 +1,13 @@
-// fetch('https://api.coingecko.com/api/v3/search/trending')
-// .then(response => response.json())
-// .then(data => {
+fetch('https://api.coingecko.com/api/v3/search/trending')
+.then(response => response.json())
+.then(data => {
     
-    // localStorage.setItem('trending', JSON.stringify(data))
+    // // localStorage.setItem('trending', JSON.stringify(data))
   
-    let data = localStorage.getItem('trending')
-    data = JSON.parse(data)
+    // let data = localStorage.getItem('trending')
+    // data = JSON.parse(data)
 
     const coins = data.coins;
-    // const coinList = document.getElementById('coin-list');
-    
-    // coins.forEach(coin => {
-    //     const coinDiv = document.createElement('div');
-    //     coinDiv.classList.add('coin');
-        
-    //     const coinImage = document.createElement('img');
-    //     coinImage.src = coin.item.small;  
-    //     const coinName = document.createElement('div');
-    //     coinName.textContent = coin.item.name;
-
-    //     coinDiv.appendChild(coinImage);
-    //     coinDiv.appendChild(coinName);
-        
-    //     coinList.appendChild(coinDiv);
-    // });
-
-    
-    // let data = localStorage.getItem('trending')
-    // let data1 = JSON.parse(data)
 
     const outerCirle = document.getElementsByClassName('outer-circle-container')[0];
     const innerCircle = document.getElementsByClassName('inner-circle-container')[0];
@@ -63,7 +43,7 @@
         })
 
     }
-// })
+})
 
 function displayCoinCategoryData(data) {
   const coinDetailsContainer = document.getElementById('coin-details-container');

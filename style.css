@@ -4,9 +4,7 @@ body {
     /* overflow: hidden; */
     padding-top: 66px;
 }
-*{
-    box-sizing: border-box;
-}
+
 .sm-fs-6 {
     font-size: 0.875rem;
 }
@@ -158,7 +156,7 @@ h4 img{
     background-image: url('https://cdn.dribbble.com/users/125060/screenshots/17415848/media/a457feac6e9484d8030a069cda75ddce.png?resize=1200x900&vertical=center');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: top;
     background-attachment: fixed;
 
     height: auto; /* Adjust height automatically based on content */

@@ -9,12 +9,12 @@ google.charts.load('current', {'packages': ['corechart']});
 
 async function fetchCryptoData() {
 
-    // const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
-    // const data = await response.json();
-    // localStorage.setItem("cryptoData", JSON.stringify(data));
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
+    const data = await response.json();
 
-    const response = localStorage.getItem('cryptoData')
-    const data = JSON.parse(response)
+    // localStorage.setItem("cryptoData", JSON.stringify(data));
+    // const response = localStorage.getItem('cryptoData')
+    // const data = JSON.parse(response)
 
     const sortedData = data.sort((a, b) => b.current_price - a.current_price);
     allData = [...sortedData].slice(4, sortedData.length)

@@ -19,207 +19,194 @@
 
 <body class="sm-fs-6">
 
-    <nav class="navbar navbar-dark navbar-expand-md fixed-top"  style="background-color: #0f0f23; opacity: 0.9">
-        <div class="container-fluid">
-
-            <a class="navbar-brand " href="#">
-                <img src="cryptoLogo.jpeg.jpg" alt="Logo" style="width: 40px; height: 40px; border-radius: 50%;"
-                    class="mr-2"> <!-- Logo Image -->
-                <span class="font-weight-bold "> &nbsp; <strong> Crypto </strong></span>
-            </a>
-            <button class="navbar-toggler btn btn-sm" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarToggler">
-
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link font-weight-bold" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link font-weight-bold" href="#charts">Charts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link font-weight-bold" href="#crypto-data-div">Crypto-coins</a>
-                    </li>
-                </ul>
-
-                <form class="d-flex">
-                    <input class="form-control" style="color: rgb(0, 87, 128);" type="search" id="navSearchBar"
-                        placeholder="Search for a COIN" aria-label="Search">
-                    <button class="btn btn-sm btn-outline-light" type="submit" id="navSearchBtn">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    <!-- discribing coins -->
-    <div class="discribing">
-        <div>
-            <h2>Seamless, Accurate, and Innovative Cryptocurrency Solutions</h2>
-        </div>
-
-        <div class="features">
-            <div class="feature">
-                <h4>Secure Transactions</h4>
-                <p>Experience the highest security standards for all your crypto needs.</p>
-            </div>
-            <div class="feature">
-                <h4>Real-Time Analytics</h4>
-                <p>Stay informed with instant updates and analytics at your fingertips.</p>
-            </div>
-            <div class="feature">
-                <h4>Global Access</h4>
-                <p>Trade anywhere, anytime, with accessibility across the globe.</p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- coins trending containers
-    <div class="trending-container mt-3 p-1">
-
-        <div id="coin-container" class="rounded shadow-sm p-3">
-            <h4 class="text-left mb-1" style="color: rbg(54, 117, 136) !important;">
-                Trending 
-                <img src="trending_icon.jpeg" alt="">
-            </h4>
-
-            <div id="coin-list" class="scrolling"></div>
-        </div>
-
-    </div> -->
-
-    <!-- selected coin search -->
-    <div class="container mt-5 p-0" id="selectedCoinSearchDiv">
-        <h6 class="text-center mb-0">Select a Crypto Coin and Date </h6>
-
-        <!-- Date Picker Input -->
-        <div class="mb-3 row d-flex justify-content-center">
-            <div class="col-sm-12 col-md-6">
-                <div class="card shadow-sm rounded">
-                    <div class="card-body text-center" style="border-radius: 10px;">
-                        <h5 class="card-title">Crypto Coin Selection</h5>
-
-                        <!-- <input type="text" id="cryptoInput" class="form-control mb-3" placeholder="Enter Cryptocurrency (e.g., bitcoin)" value="bitcoin" required> -->
-                        <div class="input-group mb-3">
-                            <select id="coinSelect" class="form-select">
-                                <!-- <option value="">Select a cryptocurrency...</option> -->
-                                <option value="bitcoin">Bitcoin (BTC)</option>
-                                <option value="ethereum">Ethereum (ETH)</option>
-                                <option value="tether">Tether (XRP)</option>
-                                <option value="litecoin">Litecoin (LTC)</option>
-                                <option value="cardano">Cardano (ADA)</option>
-                            </select>
-
-                            &nbsp;
-
-                            <input type="text" id="cryptoInput" class="form-control"
-                                placeholder="Or enter custom cryptocurrency" aria-label="Custom Cryptocurrency">
-                        </div>
-
-
-                        <input type="date" id="datePicker" class="form-control mb-3" required>
-
-                        <button class="btn" style="background-color: rgb(0, 87, 128);"
-                            onclick="selectedCoinData()">Show</button>
-                    </div>
+    <div>
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: #0f0f23; opacity: 0.9">
+            <div class="container-fluid">
+    
+                <a class="navbar-brand " href="#">
+                    <img src="cryptoLogo.jpeg.jpg" alt="Logo" style="width: 40px; height: 40px; border-radius: 50%;"
+                        class="mr-2"> <!-- Logo Image -->
+                    <span class="font-weight-bold "> &nbsp; <strong> Crypto </strong></span>
+                </a>
+                <button class="navbar-toggler btn btn-sm" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarToggler">
+    
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="#charts">Charts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="#crypto-data-div">Crypto-coins</a>
+                        </li>
+                    </ul>
+    
+                    <form class="d-flex">
+                        <input class="form-control" style="color: rgb(0, 87, 128);" type="search" id="navSearchBar"
+                            placeholder="Search for a COIN" aria-label="Search">
+                        <button class="btn btn-sm btn-outline-light" type="submit" id="navSearchBtn">Search</button>
+                    </form>
                 </div>
             </div>
-
-            <div id="selectedCoinData" class="col-sm-12 col-md-6"></div>
-
+        </nav>
+    
+        <!-- discribing coins -->
+        <div class="discribing">
+            <div>
+                <h2>Seamless, Accurate, and Innovative Cryptocurrency Solutions</h2>
+            </div>
+    
+            <div class="features">
+                <div class="feature">
+                    <h4>Secure Transactions</h4>
+                    <p>Experience the highest security standards for all your crypto needs.</p>
+                </div>
+                <div class="feature">
+                    <h4>Real-Time Analytics</h4>
+                    <p>Stay informed with instant updates and analytics at your fingertips.</p>
+                </div>
+                <div class="feature">
+                    <h4>Global Access</h4>
+                    <p>Trade anywhere, anytime, with accessibility across the globe.</p>
+                </div>
+            </div>
+    
         </div>
-    </div>
-
-
-    <!--selected coin chart display -->
-    <div>
+    
+        <!-- selected coin search -->
+        <div class="container mt-5 p-0" id="selectedCoinSearchDiv">
+            <h6 class="text-center mb-0">Select a Crypto Coin and Date </h6>
+    
+            <!-- Date Picker Input -->
+            <div class="mb-3 row d-flex justify-content-center">
+                <div class="col-sm-12 col-md-6">
+                    <div class="card shadow-sm rounded">
+                        <div class="card-body text-center" style="border-radius: 10px;">
+                            <h5 class="card-title">Crypto Coin Selection</h5>
+    
+                            <!-- <input type="text" id="cryptoInput" class="form-control mb-3" placeholder="Enter Cryptocurrency (e.g., bitcoin)" value="bitcoin" required> -->
+                            <div class="input-group mb-3">
+                                <select id="coinSelect" class="form-select">
+                                    <!-- <option value="">Select a cryptocurrency...</option> -->
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                    <option value="tether">Tether (XRP)</option>
+                                    <option value="litecoin">Litecoin (LTC)</option>
+                                    <option value="cardano">Cardano (ADA)</option>
+                                </select>
+    
+                                &nbsp;
+    
+                                <input type="text" id="cryptoInput" class="form-control"
+                                    placeholder="Or enter custom cryptocurrency" aria-label="Custom Cryptocurrency">
+                            </div>
+    
+    
+                            <input type="date" id="datePicker" class="form-control mb-3" required>
+    
+                            <button class="btn" style="background-color: rgb(0, 87, 128);"
+                                onclick="selectedCoinData()">Show</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="selectedCoinData" class="col-sm-12 col-md-6"></div>
+    
+            </div>
+        </div>
+    
+    
+        <!--selected coin chart display -->
+    
         <div class="p-3 text-center" id="selectedCoinCharts" style="display: none;">
-
+    
             <h4>
                 <span id="selectedCoin"></span> Price Over the Last <span id="no_of_days"></span> Days
             </h4>
-
+    
             <div class="row d-flex justify-content-end">
                 <div class="col-12 col-md-12 col-lg-6 mb-4" id="selectedCoinCandleChart"></div>
-
+    
                 <div class="col-12 col-md-12 col-lg-6 mb-4" id="selectedCoinPriceChart"></div>
             </div>
-
+    
         </div>
-
-
+    
+    
         <!-- Category of coins container -->
         <div class="rounded shadow-sm p-3 mt-5 pb-5" id="CategoriesContainer">
             <h4 class="text-left mb-4 fw-bolder">
                 Coin Categories
                 <img src="shakehands.png" alt="">
             </h4>
-
+    
             <div id="coin-details-container" class="row justify-content-center"></div>
         </div>
-
+    
         <!-- carousels -->
         <div id="carouselIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
-
+    
             <div class="carousel-indicators" id="carousel-indicators">
-
+    
             </div>
-
+    
             <div class="carousel-inner" id="carouselBody">
-
+    
             </div>
-
+    
             <button class="carousel-control-prev btn" type="button" data-bs-target="#carouselIndicators"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-
+    
             <button class="carousel-control-next btn" type="button" data-bs-target="#carouselIndicators"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon btn btn-sm" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
+    
         <!-- Roatary coins -->
         <div class="mt-3 p-1">
-
+    
             <div class="rotary-coins-container">
-
+    
                 <h4 class="text-left mb-1" style="color: rbg(54, 117, 136) !important;">
                     <!-- Trending  -->
                     <img src="trending_icon.jpeg" alt="">
                 </h4>
-
+    
                 <!-- Inner Circle Container with 6 squares evenly spaced -->
                 <div class="inner-circle-container">
-
+    
                 </div>
                 <!-- Outer Circle Container with 8 squares -->
                 <div class="outer-circle-container">
-
+    
                 </div>
-
+    
             </div>
-
+    
         </div>
-
+    
         <!-- searching and filtering -->
         <div>
-
+    
             <div class="row mt-4">
                 <div class="col-sm-12 col-md-6">
                     <input type="text" class="form-control search-bar" id="searchBar"
                         placeholder="Search for a cryptocurrency...">
                 </div>
                 <div class="col-sm-12 col-md-6">
-
+    
                     <select class="form-control search-bar" id="filterBar" onchange="filteringCoins()">
                         <option value="all">All</option>
                         <option value="highMarketCap">High Market Cap</option>
@@ -227,23 +214,23 @@
                         <option value="positiveChange">Positive 24h Change</option>
                         <option value="negativeChange">Negative 24h Change</option>
                     </select>
-
+    
                 </div>
             </div>
-
+    
             <div class="row d-flex justify-content-center" id="charts">
-
+    
                 <div class="col-md-6">
                     <div id="change24_chart"></div>
                 </div>
-
+    
                 <div>
                     <div id="price_chart"></div>
                 </div>
             </div>
-
+    
         </div>
-
+    
         <!-- displaying coins -->
         <div class="mt-4 p-3" id="crypto-data-div">
             <h4>
@@ -258,6 +245,8 @@
                 <!-- Show More Button -->
             </div>
         </div>
+    </div>
+    
 
 </body>
 
